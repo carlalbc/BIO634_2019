@@ -223,7 +223,7 @@ java -jar /usr/share/java/trimmomatic.jar PE -phred33 -threads 1 -trimlog logfil
 
 [SOAPec](https://omictools.com/soapec-tool) is a tool is a read correction tool specifically designed for illumina short reads, the manual can be found [here](http://soap.genomics.org.cn/about.html). The command below will take the trimmed fastq files generated in step 4 and correct sequencing errors in a two step process using tools called KmerFreq_AR and Corrector_AR.
 
-:information_source: If not installed already, download SOAPec
+:warning: If not installed already, download SOAPec
 
 ```sh
 #Make directory
