@@ -39,8 +39,9 @@ gregor.rot@uzh.ch
 11.00 - 12.00 |  **Continuation: RNA-seq**  | CB
 12.00 - 13.00 | *Lunch at the cafeteria* 
 13:00 - 14:30 |  **Making sense of gene lists** <br /> [Presentation](GENE_LISTS/MakingSenseOfGeneLists.pdf)  \| [Hands-on](GENE_LISTS/Exercises_MakingSenseOfGeneLists.md) | GR
-14.30 - 14.50| *Coffee break* | 
-14.50 - 17.30 | **Talk** TBD
+14.30 - 14.50| *Coffee break* |
+14.50 - 15.45 | **Making sense of gene lists: Continuation**  | GR
+16.00 - 17.30 | **Talk** TBD
 
 
 ## Prerequisites for the course
