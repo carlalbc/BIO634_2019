@@ -149,7 +149,7 @@ Those are quite bad quality reads! :heavy_multiplication_x: :warning: :bangbang:
 
 :diamond_shape_with_a_dot_inside: Go through this [MANUAL](https://dnacore.missouri.edu/PDF/FastQC_Manual.pdf) to understand each of the results you have gotten in your report. And answer the following:
 
-## Questions:
+## :beginner: Questions:
 
 
 1. What’s the total number of sequences in each of the paired-end fastq files?  (Hint: look at the Basic statistics module)
