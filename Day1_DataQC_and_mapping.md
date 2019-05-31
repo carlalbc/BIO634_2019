@@ -149,15 +149,14 @@ Those are quite bad quality reads! :heavy_multiplication_x: :warning: :bangbang:
 
 :diamond_shape_with_a_dot_inside: Go through this [MANUAL](https://dnacore.missouri.edu/PDF/FastQC_Manual.pdf) to understand each of the results you have gotten in your report. And answer the following:
 
-## :beginner: Questions:
+### :beginner: Questions:
 
 
 1. What’s the total number of sequences in each of the paired-end fastq files?  (Hint: look at the Basic statistics module)
 
-SRR6170103_1 Total number of sequences  _________
+- SRR6170103_1 Total number of sequences  _________
 
-SRR6170103_2 Total number of sequences  _________
-
+- SRR6170103_2 Total number of sequences  _________
 
 2. What’s the type of encoding used?
 3. What’s the length of the reads? 
@@ -170,12 +169,7 @@ There is usually an expected drop in quality at the 3’ end of the sequences as
 
 ## Step 3: Use Trimmomatic for trimming, removing adapter sequences  and low quality reads
 
-[Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) is a java tool for performing a range of trimming tasks on Illumina paired end and single end read data. The manual can be found [here](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf)
-
-
-```sh
-java -jar /usr/share/java/trimmomatic.jar PE -phred33  SRR6170103_1.fastq.gz SRR6170103_2.fastq.gz SRR6170103_1_paired.fastq.gz SRR6170103_1_unpaired.fastq.gz SRR6170103_2_paired.fastq.gz SRR6170103_2_unpaired.fastq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
-```
+[Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) is a java tool for performing a range of trimming tasks on Illumina paired end and single end read data. Here's the [full manual](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf)
 
 The parameters used for Trimmomatic are defined as follows:
 
@@ -196,71 +190,51 @@ The parameters used for Trimmomatic are defined as follows:
 **:2:40:15** | Adapter-read alignment settings 
 **MINLEN:36** | Delete reads trimmed below length MINLEN
 
-## Questions: 
+#### a) Trimming PE reads and removing adapters:
 
-1. What does :2:40:15 means?      (Check Trimmomatic’s manual)
+```sh
+# Trimming and removing Illumina adapters
+java -jar /usr/share/java/trimmomatic.jar PE -phred33  SRR6170103_1.fastq.gz SRR6170103_2.fastq.gz SRR6170103_1_paired.fastq.gz SRR6170103_1_unpaired.fastq.gz SRR6170103_2_paired.fastq.gz SRR6170103_2_unpaired.fastq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+```
+
+### :beginner: Questions: 
+
+1. What does :2:40:15 means?      (Hint: It has something to do with the adapters, check Trimmomatic’s manual)
 2. How many reads survived after Trimmomatic? (Hint: Check the messages left in the terminal after Trimmomatic)
 
 
 :information_source: **NOTE**: Trimmomatic only deletes reads if the length after trimming of adapter sequences is less than MINLEN (which we set to 36bp)
 
-## Step 4: Use Trimmomatic to filter low quality reads
+#### b) Use Trimmomatic to filter low quality reads
 
 Next, we can remove low quality reads of the sequences by trimming the bases at the 3' end of the reads with the following command:
 
-```
+```sh
+#Filtering low quality reads
 java -jar /usr/share/java/trimmomatic.jar PE -phred33 -threads 1 -trimlog logfile2 SRR6170103_1_paired.fastq.gz SRR6170103_2_paired.fastq.gz SRR6170103_1_trim_paired.fastq SRR6170103_1_unpaired.fastq SRR6170103_2_trim_paired.fastq SRR6170103_2_trim_unpaired.fastq SLIDINGWINDOW:4:15 LEADING:3 TRAILING:3 MINLEN:36
 ```
-The parameters used for Trimmomatic are defined as follows:
 
-1) **PE**
-data is paired end
-2) **phred33**
-Quality scores are 33 offset
-3) **threads 1** 
-number of threads to use
-4) **trimlog logfile2**
-name of logfile for summary information
-5) **Left_paired.fastq**
-name of input adapter trimmed left fastq file
-6) **Right_paired.fastq**
-name of input adapter trimmed right fastq file
-7) **Left_trim_paired.fastq**
-paired trimmed output fastq file for left reads
-8) **Left_unpaired.fastq**
-unpaired trimmed output fastq file for left reads
-9) **Right_paired.fastq**
-paired trimmed output fastq file for right reads
-10) **Right_unpaired.fastq**
-unpaired trimmed output fastq file for right reads
-11) **LEADING:3**
-Trim 5’ bases with quality score < 3
-12) **TRAILING:3**
-Trim 3’ bases with quality score < 3
-13) **SLIDINGWINDOW:4:15** see manual for explanation
-14) **MINLEN:36**
-delete reads trimmed below length MINLEN
-
-
-# Questions:
+### :beginner: Questions:
 
 - What was the screenlog of Trimmomatic this time? How many reads were removed? Whas there any?
 - What does the SLIDINGWINDOW:4:15 means? Check the manual.
 
-## 3. Correcting errors
+## Step 4: Correcting sequencing errors by using SOAPec 
 
-## Step 5: Use SOAPec to correct sequencing errors
+[SOAPec](https://omictools.com/soapec-tool) is a tool is a read correction tool specifically designed for illumina short reads, the manual can be found [here](http://soap.genomics.org.cn/about.html). The command below will take the trimmed fastq files generated in step 4 and correct sequencing errors in a two step process using tools called KmerFreq_AR and Corrector_AR.
 
-SOAPec is a tool is a read correction tool specifically designed for illumina short reads, the manual can be found [here](http://soap.genomics.org.cn/about.html). The command below will take the trimmed fastq files generated in step 4 and correct sequencing errors in a two step process using tools called KmerFreq_AR and Corrector_AR.
+:information_source: If not installed already, download SOAPec
 
-
-If not installed already, download SOAPec
-
-```
+```sh
+#Make directory
 mkdir software
+# Get SOAPec
 wget http://sourceforge.net/projects/soapdenovo2/files/ErrorCorrection/SOAPec_v2.01.tar.gz -P software
+# Go to directory
 cd software
+#Untar
 tar -zxf SOAPec_v2.01.tar.gz
+#Get out of folder
 cd ..
 ```
 
@@ -274,8 +248,8 @@ It will open up gedit where you have to write the path of the files that you cre
 In **my** case it will look like this:
 
 ```
-/home/vega/URPP_2018/BIO634-2018/PartI/fastq/SRR6170103/SRR6170103_1_trim_paired.fastq
-/home/vega/URPP_2018/BIO634-2018/PartI/fastq/SRR6170103/SRR6170103_2_trim_paired.fastq
+/home/vega/URPP_2018/BIO634-2019/PartI/fastq/SRR6170103/SRR6170103_1_trim_paired.fastq
+/home/vega/URPP_2018/BIO634-2019/PartI/fastq/SRR6170103/SRR6170103_2_trim_paired.fastq
 ```
 Save the file (Ctrl+S) and exit (Alt+F4). Then, run the KmerFreq_AR command below and when it finishes run the Corrector_AR command.
 
