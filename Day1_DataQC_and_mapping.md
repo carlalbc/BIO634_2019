@@ -9,7 +9,7 @@
 
 Before we get started --remember, Linux is your friend :penguin:
 
-A brief reminder of useful commands that will come in handy for Today's workflow:
+:information_source: A brief reminder of useful commands that will come in handy for Today's workflow:
 
 | Command | Function |
 | ------ | ------ |
@@ -124,7 +124,7 @@ mv *.zip *.html FastQC
 cd FastQC
 ``` 
 
-**Reminder:** You can always check where you are in the terminal using `pwd`
+:information_source: **Reminder:** You can always check where you are in the terminal using `pwd`
 
 
 #### 2) Open the FastQC results with your favorite html visualizer (i.e firefox, chrome, etc.) or if you prefer it, you can open the file through your GUI by directly clicking on it.
@@ -141,11 +141,11 @@ Pretty good quality reads! :heavy_check_mark: :octocat:
 
 
 
-- :heavy_multiplication_x: Sometimes you can get very **bad** quality reads. See the example below:
+- :information_source: Sometimes you can get very **bad** quality reads. See the example below:information_source::
 
 ![alt text](https://github.com/carlalbc/BIO694_2018/blob/master/img/fastqc_bad1.png)
 
-Those are really bad quality reads! :bangbang: :octocat:
+Those are really bad quality reads! heavy_multiplication_x: :bangbang: :octocat:
 
 * Go through this manual https://dnacore.missouri.edu/PDF/FastQC_Manual.pdf to understand each of the results you have gotten in your report.
 
