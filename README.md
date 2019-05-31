@@ -22,17 +22,11 @@ gregor.rot@uzh.ch
 -------- | --- | --- 
 9.30 - 9.40 | **Welcome & Introduction** | CB&GR
 9.40 - 11:00 | **QC and Mapping** <br /> [Presentation](QC_MAPPING/QC_and_mapping.pdf) \| [Hands-on](https://github.com/carlalbc/BIO634_2018/blob/master/Day1_DataQC_and_mapping.md) | CB
-&nbsp; | &nbsp; | &nbsp;
 11:00 - 11.20 | *Coffee break*
-&nbsp; | &nbsp; | &nbsp;
 11.20 - 12.30 | **QC and Mapping: Continuation** | CB
-&nbsp; | &nbsp; | &nbsp;
 12.30 - 13.30 | *Lunch at the cafeteria*
-&nbsp; | &nbsp; | &nbsp;
 13.30 - 15.45 | **Variant Calling 2** <br /> [Presentation](VARIANT_CALLING/Variant_Calling2.pdf)  \| [Hands-on](VARIANT_CALLING/Exercises_Variant_Calling.md) | GR
-&nbsp; | &nbsp; | &nbsp;
 15.45 - 16.00 | *Coffee break*
-&nbsp; | &nbsp; | &nbsp;
 16.00 - 17.30 | *Talk:* Dr. Jean-Claude Walser (ETH): RNA-seq in ecology and evolutionary biology 
 
 
