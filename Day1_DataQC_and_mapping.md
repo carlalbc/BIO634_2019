@@ -238,7 +238,7 @@ tar -zxf SOAPec_v2.01.tar.gz
 cd ..
 ```
 
-Now we need to create a file with the fastq files location for SOAPec to be able to work. Use your favorite text editor (ie. gedit) and write the path of our fastq files. If you can't remember, use ***pwd**.
+Now we need to create a file with the fastq files location for SOAPec to be able to work. Use your favorite text editor (ie. gedit) and write the path of our fastq files. If you can't remember, use `pwd`.
 
 ```
 gedit files.txt &
@@ -254,7 +254,7 @@ In **my** case it will look like this:
 - Save the file (Ctrl+S) and exit (Alt+F4). 
 - Run the `KmerFreq_AR` command below and when it finishes run the `Corrector_AR` command.
 
-:warning:Depending on your location and where you downloaded SOAPEc *the path will change slightly*. Remember to use **pwd** to know where you are :warning:
+:warning: Depending on **your location** and where you downloaded SOAPEc **the PATH will change**. Remember to use `pwd` to know where you are :warning:
 
 ```
 #Substitute the path below for your own
@@ -277,7 +277,7 @@ What about for SRR6170103_2?
 
 - How many bases were corrected by the "BBtree method"?  ______________
 
-- **Are there any differences between the two? What conclusions can you make?**
+- Are there any differences between the two? What conclusions can you make?
 
 _____________________________________________________________________________________
 
@@ -287,16 +287,16 @@ ________________________________________________________________________________
 
 Congratulations you now can continue with the next step of our workflow! :octocat:
 
-NOTE: Exit the fastq folder using ***cd ..*** until you get to your main directory
-
-## II) Mapping sequencing reads to a reference genome using the Burrows-Wheeler Aligner (BWA) tool
+NOTE: Exit the fastq folder using `cd ..` until you get to your main directory
 
 
-BWA is a software package for mapping low-divergent sequences against a large reference genome, such as the human genome. You can find the manual [here](http://bio-bwa.sourceforge.net/bwa.shtml)
+## Part II: Mapping sequencing reads to a reference genome using the Burrows-Wheeler Aligner (BWA) tool
+
+[BWA](http://bio-bwa.sourceforge.net/) is a software package for mapping low-divergent sequences against a large reference genome, such as the human genome. You can find the manual [here](http://bio-bwa.sourceforge.net/bwa.shtml)
  
-- In this part of the hands-on session we will map the cleaned reads from the previous steps to the reference genome of *E. coli*.
+:information_source: In this part of the hands-on session we will map the cleaned reads from the previous steps to the reference genome of *E. coli*.
 
-## Step 1: Download the reference genome and its annotation file
+### Step 1: Download the reference genome and its annotation file
 
 Go to the main folder (we called it mapping) and download the files.
 
@@ -307,17 +307,17 @@ wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/845/GCF_000005845.2_ASM5
 gunzip *
 ```
 
-## Step 2: Create indices and dictionaries for bwa, samtools and picard.
+### Step 2: Create indices and dictionaries for bwa, samtools and picard.
 
 Indices are necessary for quick access to specific information in very large files.
 
-As you go creating the indices check for the files with ***ls***
+As you go creating the indices check for the files with `ls`
 
 - bwa index
 ```
 bwa index -a is GCF_000005845.2_ASM584v2_genomic.fna
 ```
-***-a is*** Sets the algorithm to be used to construct a suffix array. This is suitable for
+`-a is` Sets the algorithm to be used to construct a suffix array. This is suitable for
 databases smaller than 2GB.
 
 - samtools index
@@ -329,7 +329,7 @@ samtools faidx GCF_000005845.2_ASM584v2_genomic.fna
 java -jar /home/student/APPL/PICARD/picard.2.18.0.jar CreateSequenceDictionary R=GCF_000005845.2_ASM584v2_genomic.fna O=GCF_000005845.2_ASM584v2_genomic.dict
 ```
 
-# Step 3: Align reads to the Reference Genome using BWA
+### Step 3: Align reads to the reference genome using `bwa`
 
 ```
 bwa mem GCF_000005845.2_ASM584v2_genomic.fna fastq/SRR6170103/SRR6170103_1_trim_paired.fastq fastq/SRR6170103/SRR6170103_2_trim_paired.fastq > SRR6170103.sam
@@ -355,13 +355,13 @@ samtools index SRR6170103_sorted.bam
 samtools view -H SRR6170103_sorted.bam 
 ```
 
-## Questions
+### :beginner: Questions
 
 1. What is the index of the new sorted bam file?
 2. How many chromosomes are present and which version of the SAM is it?
 
 
-## Step 4: BAM Refinement: duplicate removal with Picard
+### Step 4: BAM Refinement: duplicate removal with Picard
 
 Picard is a set of command line tools for manipulating high-throughput sequencing (HTS) data and formats such as SAM/BAM/CRAM and VCF. More information can be found [here](https://broadinstitute.github.io/picard/command-line-overview.html#Overview)
 
@@ -375,13 +375,13 @@ samtools flagstat SRR6170103_sorted.bam > SRR6170103_sorted.flagstat
 samtools flagstat SRR6170103_final.bam > SRR6170103_final.flagstat
 ```
 
-## Questions
+### :beginner: Questions
 
 1. What's the percentage of duplicated reads? (Hint: look at the file dupl_metrics.txt)
 2. Do you observe any diferences between the file with and without duplicates? (Hint: look at the flagstat files)
 
 
-## BAM visualization
+### Step 5:  BAM visualization
 
 We will use the java web start version of IGV.
 Follow this link: ​ https://www.broadinstitute.org/software/igv/download
