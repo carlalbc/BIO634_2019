@@ -24,7 +24,6 @@ mkdir   |           make directory
 rmdir   | remove directory
 wget    |          download files from the web  
 
-Ok, let's move-on with the practical part of this tutorial.
 
 ## I) Quality Assesment: Pre-processing of the reads
 
