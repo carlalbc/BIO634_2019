@@ -23,7 +23,9 @@ gregor.rot@uzh.ch
 9.30 - 9.40 | **Welcome & Introduction** | CB&GR
 9.40 - 12.30 | **QC and Mapping** <br /> [Presentation](QC_MAPPING/QC_and_mapping.pdf) \| [Hands-on](https://github.com/carlalbc/BIO634_2018/blob/master/Day1_DataQC_and_mapping.md) | CB
 &nbsp; | &nbsp; | &nbsp;
+12.30 - 13.30 | *Lunch at the cafeteria*
 13.30 - 15.45 | **Variant Calling 2** <br /> [Presentation](VARIANT_CALLING/Variant_Calling2.pdf)  \| [Hands-on](VARIANT_CALLING/Exercises_Variant_Calling.md) | GR
+15.45 - 16.00 | *Coffee break*
 16.00 - 17.30 | *Talk:* Dr. Jean-Claude Walser (ETH): RNA-seq in ecology and evolutionary biology 
 
 
@@ -32,11 +34,13 @@ gregor.rot@uzh.ch
 
 &nbsp;   | &nbsp; | &nbsp;
 -------- | --- | --- 
-9.30 - 12.00 | **RNA-seq** <br /> [Presentation](RNAseq/RNAseq.pdf) \| [Hands-on](https://github.com/carlalbc/BIO634_2018/blob/master/Day2_RNAseq.md) | CB
-12.00 - 13.00 | *lunch* 
-13:00 - 14:00 | GAP to be filled
-14.00 - 15.00 | *Talk:* TBD | 
-15.00 - 17.30 | **Making sense of gene lists** <br /> [Presentation](GENE_LISTS/MakingSenseOfGeneLists.pdf)  \| [Hands-on](GENE_LISTS/Exercises_MakingSenseOfGeneLists.md) | GR
+9.30 - 10.45 | **RNA-seq** <br /> [Presentation](RNAseq/RNAseq.pdf) \| [Hands-on](https://github.com/carlalbc/BIO634_2018/blob/master/Day2_RNAseq.md) | CB
+10.45 - 11:00 | *Coffee break*
+11.00 - 12.00 |  **Continuation: RNA-seq**  | CB
+12.00 - 13.00 | *Lunch at the cafeteria* 
+13:00 - 14:30 |  **Making sense of gene lists** <br /> [Presentation](GENE_LISTS/MakingSenseOfGeneLists.pdf)  \| [Hands-on](GENE_LISTS/Exercises_MakingSenseOfGeneLists.md) | GR
+14.30 - 14.50| *Coffee break* | 
+14.50 - 17.30 | **Talk** TBD
 
 
 ## Prerequisites for the course
