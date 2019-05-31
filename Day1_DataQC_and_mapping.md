@@ -223,7 +223,7 @@ java -jar /usr/share/java/trimmomatic.jar PE -phred33 -threads 1 -trimlog logfil
 
 [SOAPec](https://omictools.com/soapec-tool) is a tool is a read correction tool specifically designed for illumina short reads, the manual can be found [here](http://soap.genomics.org.cn/about.html). The command below will take the trimmed fastq files generated in step 4 and correct sequencing errors in a two step process using tools called KmerFreq_AR and Corrector_AR.
 
-:warning: If not installed already, download SOAPec
+:diamond_shape_with_a_dot_inside: If not installed already, download SOAPec
 
 ```sh
 #Make directory
@@ -251,15 +251,17 @@ In **my** case it will look like this:
 /home/vega/URPP_2018/BIO634-2019/PartI/fastq/SRR6170103/SRR6170103_1_trim_paired.fastq
 /home/vega/URPP_2018/BIO634-2019/PartI/fastq/SRR6170103/SRR6170103_2_trim_paired.fastq
 ```
-Save the file (Ctrl+S) and exit (Alt+F4). Then, run the KmerFreq_AR command below and when it finishes run the Corrector_AR command.
+- Save the file (Ctrl+S) and exit (Alt+F4). 
+- Run the `KmerFreq_AR` command below and when it finishes run the `Corrector_AR` command.
 
-Depending on your location and where you downloaded SOAPEc *the path will change slightly*. Remember to use **pwd** to know where you are.
+:warning:Depending on your location and where you downloaded SOAPEc *the path will change slightly*. Remember to use **pwd** to know where you are :warning:
 
 ```
-/home/vega/URPP_2018/BIO634-2018/software/SOAPec_v2.01/bin/KmerFreq_AR -k 16 -t 1 -q 33 -p Error_Corr files.txt > kmerfreq16.log 2> kmerfreq16.err
-/home/vega/URPP_2018/BIO634-2018/software/SOAPec_v2.01/bin/Corrector_AR -k 16 -Q 33 -t 1 -o 3 Error_Corr.freq.cz Error_Corr.freq.cz.len files.txt > Corr16.log 2>Corr16.err
+#Substitute the path below for your own
+/home/vega/URPP_2018/BIO634-2019/software/SOAPec_v2.01/bin/KmerFreq_AR -k 16 -t 1 -q 33 -p Error_Corr files.txt > kmerfreq16.log 2> kmerfreq16.err
+/home/vega/URPP_2018/BIO634-2019/software/SOAPec_v2.01/bin/Corrector_AR -k 16 -Q 33 -t 1 -o 3 Error_Corr.freq.cz Error_Corr.freq.cz.len files.txt > Corr16.log 2>Corr16.err
 ```
-## Questions
+### :beginner: Questions
 
 1. Inspect the output of Corrector_AR output file SRR6170103_1_trim_paired.fastq.cor.stat (Hint, use ***more*** / ***less***)
 
