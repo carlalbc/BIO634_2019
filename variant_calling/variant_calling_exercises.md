@@ -2,7 +2,7 @@
 ## Variant Calling 2
 
 ### Evolution in Action
-### Stefan Wyder
+### Adapted from Stefan Wyder class on BIO634 2018
   
 ![URPP logo](../Logo_URPP_kl2.png)  
   
