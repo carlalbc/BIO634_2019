@@ -5,23 +5,28 @@
 
 ![alt text](https://github.com/carlalbc/URPP_tutorials/blob/master/img/Logo_URPP_kl2.png)
 
-# Part I.- DataQC, pre-processing and mapping genomes 
+## Part I.- Data Quality Control (QC), pre-processing and mapping genomes 
 
-Before we get started --remember, linux is your friend :penguin::penguin::penguin:
+Before we get started --remember, Linux is your friend :penguin:
 
-- Just to remind you some useful commands for Today's workflow:
+A brief reminder of useful commands that will come in handy for Today's workflow:
 
-```
-ls                           (listing files)
-more                         (view the files)
-cd or cd ..                  (access or exit folders)
-mv                           (moving files)
-cp                           (copying files)
-mkdir                        (make directories)
-wget                         (download files from the web)  
-```
+| Plugin | README |
+| ------ | ------ |
+| ls   | listing files
+less, more | view files
+head | view first 10 lines of the file
+cd | change directory (enter)
+cd ..   |  change one directory down (exit)
+mv      |             moving file/ dir
+cp      |            copying file / dir
+mkdir   |           make directory
+rmdir   | remove directory
+wget    |          download files from the web  
 
-## I) Quality Assesment: Pre-processing the reads
+Ok, let's move-on with the practical part of this tutorial.
+
+## I) Quality Assesment: Pre-processing of the reads
 
 We will be working with data from the [Lenski lab](http://myxo.css.msu.edu/ecoli/genomicsdat.html) and Desai. They are known for making long-term evolution experiments in *E. coli* since the early 00’s. The strain we will work with today is an *E. coli* from a long-term evolution experiment (LTEE). The twelve LTEE populations have been serially propagated
 in the same medium for more than 60,000 generations, with samples preserved every 500 generations.  
@@ -31,7 +36,7 @@ in the same medium for more than 60,000 generations, with samples preserved ever
 
 Let's get started! 
 
-## Step 1: Downloading raw sequencing fastq files from a database.
+## Step 1: Downloading raw sequencing FASTQ files from a database.
 
 - There are two main databases, the **Sequence Read Archive** (SRA, US based) and the **European nucleotide archive** (ENA, EU based). 
 
@@ -40,12 +45,21 @@ Let's get started!
 1. Create the following directories and go to the main directory (remember it's good to keep things tidy!):
 
 
-```
+```sh
+# 1) Make directory called mapping:
 mkdir mapping
-mkdir mapping/fastq                          (creates a folder called fastq)
-mkdir mapping/fastq/SRR6170103       (creates a subdirectory for the fastq files)
-cd mapping/fastq/SRR6170103          (goes to the SRR6170103 inside the fastq directory)
-mkdir FastQC                         (we will store the results from the QC here later)
+
+# 2) Make subdirectory called fastq:
+mkdir mapping/fastq           
+
+# 3) Make another subdirectory for the fastq files called SRR6170103
+mkdir mapping/fastq/SRR6170103       
+
+# 4) Go to the SRR6170103 directory inside the fastq directory
+cd mapping/fastq/SRR6170103 
+
+# 5)  Make yet another directory to store the QC results later
+mkdir FastQC                        
 ``` 
 
 2. Download the fastq files from ENA - we will work with paired-end reads from E. coli:
