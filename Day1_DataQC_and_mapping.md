@@ -61,12 +61,12 @@ cd mapping/fastq/SRR6170103
 mkdir FastQC                        
 ``` 
 
-#### 2. Download the FASTQ files from ENA - we will work with paired-end reads from *E. coli*:
+#### 2. Download the FASTQ files from ENA - we will work with paired-end (PE) reads from *E. coli*:
 
 - Verify that you are the directory `mapping/fastq/SRR6170103` by using `pwd`. If you are continue with the below commands to download the files that we will work on today.
 
 ```sh 
-# Get both FASTQ paired-end read files from ENA and store it in the subdirectory we just created:
+# Get both FASTQ PE read files from ENA and store it in the subdirectory we just created:
 
 wget http://ftp.sra.ebi.ac.uk/vol1/fastq/SRR617/003/SRR6170103/SRR6170103_1.fastq.gz && wget http://ftp.sra.ebi.ac.uk/vol1/fastq/SRR617/003/SRR6170103/SRR6170103_2.fastq.gz 
 ```
@@ -97,7 +97,7 @@ fastqc --help
 Usage: fastqc seqfile1 seqfile2 .. seqfileN
 ```
 
-- Now let’s assess the quality of our fastq files containing paired-end sequencing reads by running FastQC:
+#### 1) Assess the quality of the FASTQC files containing PE sequencing reads by running FastQC:
 
 - We can do this either by using the graphical user interface of the program (GUI) or through the command-line (recommended). 
  
@@ -124,15 +124,12 @@ mv *.zip *.html FastQC
 cd FastQC
 ``` 
 
-**Reminder:** You can always check where you are in the terminal using:
+**Reminder:** You can always check where you are in the terminal using `pwd`
 
-```
-pwd          (shows the location where you are in the terminal)
-```
 
-* Open the FastQC results with your favorite html visualizer (i.e firefox, chrome, etc.) or if you prefer it, you can open the file through your graphical interface by directly clicking on it.
+#### 2) Open the FastQC results with your favorite html visualizer (i.e firefox, chrome, etc.) or if you prefer it, you can open the file through your GUI by directly clicking on it.
 
-```
+```sh 
 firefox SRR6170103_1_fastqc.html
 ```
 
@@ -140,14 +137,15 @@ firefox SRR6170103_1_fastqc.html
   
 ![alt text](https://github.com/carlalbc/BIO694_2018/blob/master/img/fastqc_report1.png)
 
-Pretty good quality! :octocat:
+Pretty good quality reads! :heavy_check_mark: :octocat:
 
 
-- You could get *really bad quality reads* like the following:
+
+- :heavy_multiplication_x: Sometimes you can get very **bad** quality reads. See the example below:
 
 ![alt text](https://github.com/carlalbc/BIO694_2018/blob/master/img/fastqc_bad1.png)
 
-Those are really bad quality reads! :octocat:
+Those are really bad quality reads! :bangbang: :octocat:
 
 * Go through this manual https://dnacore.missouri.edu/PDF/FastQC_Manual.pdf to understand each of the results you have gotten in your report.
 
