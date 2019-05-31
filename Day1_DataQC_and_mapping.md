@@ -101,10 +101,10 @@ Usage: fastqc seqfile1 seqfile2 .. seqfileN
 
 - We can do this either by using the graphical user interface of the program (GUI) or through the command-line (recommended). 
  
-##### Graphical User Interface - option 1:
+##### Graphical User Interface (GUI) - option 1:
 
-```
-# open GUI of FastQC by typing fastqc in the command-line (don't forget the ampersand)
+```sh
+#Open the GUI of FastQC by typing fastqc in the command-line (don't forget the ampersand)
 
 fastqc &
 ```
