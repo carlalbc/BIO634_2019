@@ -16,13 +16,10 @@ gregor.rot@uzh.ch
 ## Table of Content
 
 ### Day 1
-
-
-&nbsp;   | &nbsp; | &nbsp;
+&nbsp; | &nbsp; | &nbsp;
 -------- | --- | --- 
 9.30 - 9.40 | **Welcome & Introduction** | CB&GR
 9.40 - 11:00 | **QC and Mapping** <br /> [Presentation](QC_MAPPING/QC_and_mapping.pdf) \| [Hands-on](https://github.com/carlalbc/BIO634_2018/blob/master/Day1_DataQC_and_mapping.md) | CB
-&nbsp; | &nbsp; | &nbsp;
 11:00 - 11.20 | *Coffee break*
 11.20 - 12.30 | **QC and Mapping: Continuation** | CB
 12.30 - 13.30 | *Lunch at the cafeteria*
@@ -33,8 +30,7 @@ gregor.rot@uzh.ch
 
 
 ### Day 2
-
-&nbsp;   | &nbsp; | &nbsp;
+&nbsp; | &nbsp; | &nbsp;
 -------- | --- | --- 
 9.30 - 10.45 | **RNA-seq** <br /> [Presentation](RNAseq/RNAseq.pdf) \| [Hands-on](https://github.com/carlalbc/BIO634_2018/blob/master/Day2_RNAseq.md) | CB
 10.45 - 11:00 | *Coffee break*
