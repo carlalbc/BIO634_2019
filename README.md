@@ -1,16 +1,16 @@
 ## BIO634 Next-Generation Sequencing 2 – Transcriptomes, Variant Calling and Biological Interpretation
 
-## September 17/18 2018
+## June 3-4th 2019
 
 
 ### University of Zurich
 ### URPP Evolution in Action
 ![URPP logo](Logo_URPP_kl2.png)
 
-Stefan Wyder & Carla Bello
-
-stefan.wyder@uzh.ch  
+Carla Bello & Gregor Rot
+ 
 carla.bello@ieu.uzh.ch
+gregor.rot@uzh.ch 
 
 
 ## Table of Content
@@ -23,8 +23,8 @@ carla.bello@ieu.uzh.ch
 9.30 - 9.40 | **Welcome & Introduction** | SW&CB
 9.40 - 12.30 | **QC and Mapping** <br /> [Presentation](QC_MAPPING/QC_and_mapping.pdf) \| [Hands-on](https://github.com/carlalbc/BIO634_2018/blob/master/Day1_DataQC_and_mapping.md) | CB
 &nbsp; | &nbsp; | &nbsp;
-13.30 - 15.45 | **Variant Calling 2** <br /> [Presentation](VARIANT_CALLING/Variant_Calling2.pdf)  \| [Hands-on](VARIANT_CALLING/Exercises_Variant_Calling.md) | SW
-16.00 - 17.30 | *Talk:* Dr. Martin Fischer (ETH): Detection of the genomic signature of selection [pdf](TALKS/NGS_Selection_Fischer.pdf) |
+13.30 - 15.45 | **Variant Calling 2** <br /> [Presentation](VARIANT_CALLING/Variant_Calling2.pdf)  \| [Hands-on](VARIANT_CALLING/Exercises_Variant_Calling.md) | GR
+16.00 - 17.30 | *Talk:* Dr. Jean-Claude Walser (ETH): RNA-seq in ecology and evolutionary biology 
 
 
 
