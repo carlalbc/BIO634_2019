@@ -42,7 +42,7 @@ Let's get started!
 
 - Today we will download the raw reads from the ENA. The project accession name is [PRJNA380528](https://www.ebi.ac.uk/ena/data/view/PRJNA380528). Please, follow the next steps before downloading the fastq files:
  
-1. Create the following directories and go to the main directory (remember it's good to keep things tidy!):
+####  1. Make the following directories and go to the main directory (remember it's good to keep things tidy!):
 
 
 ```sh
@@ -55,28 +55,32 @@ mkdir mapping/fastq
 # 3) Make another subdirectory for the fastq files called SRR6170103
 mkdir mapping/fastq/SRR6170103       
 
-# 4) Go to the SRR6170103 directory inside the fastq directory
+# 4) Go to the SRR6170103 directory inside the mapping/fastq directories
 cd mapping/fastq/SRR6170103 
 
-# 5)  Make yet another directory to store the QC results later
+# 5)  Make yet another directory at your current location to store the QC results later
 mkdir FastQC                        
 ``` 
 
-2. Download the fastq files from ENA - we will work with paired-end reads from E. coli:
+#### 2. Download the FASTQ files from ENA - we will work with paired-end reads from *E. coli*:
 
-```
-wget http://ftp.sra.ebi.ac.uk/vol1/fastq/SRR617/003/SRR6170103/SRR6170103_1.fastq.gz  (gets the first fastq paired-end read from ENA and stores it in the subdirectory we just created)
+- Verify that you are the directory `mapping/fastq/SRR6170103` by using `pwd`. If you are continue with the below commands to download the files that we will work on today.
 
-wget http://ftp.sra.ebi.ac.uk/vol1/fastq/SRR617/003/SRR6170103/SRR6170103_2.fastq.gz  (gets the second fastq paired-end read file from ENA and stores it in the subdirectory we just created)
-```
-- Let’s check the fastq files:
+```sh 
+# Get both FASTQ paired-end read files from ENA and store it in the subdirectory we just created:
 
+wget http://ftp.sra.ebi.ac.uk/vol1/fastq/SRR617/003/SRR6170103/SRR6170103_1.fastq.gz && wget http://ftp.sra.ebi.ac.uk/vol1/fastq/SRR617/003/SRR6170103/SRR6170103_2.fastq.gz 
 ```
-less SRR6170103_1.fastq.gz           (exit with Ctrl+Z)
-head SRR6170103_1.fastq.gz           (shows the first 10 lines, but in this case it's compressed so it will look funny)
+
+- Let’s check the FASTQ files:
+
+```sh 
+less SRR6170103_1.fastq.gz        # Exit with Ctrl+Z
+# shows the first 10 lines
+head SRR6170103_1.fastq.gz        # In this case it's a compressed file so it will be non-human readable!
 ``` 
 
-- You can also use ***tail*** to see the end of the file.
+- You can also use `tail` to see the end of the file.
 
 Now that you have seen the files, continue with the rest of the workflow.
 
