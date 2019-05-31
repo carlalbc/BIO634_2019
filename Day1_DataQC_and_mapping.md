@@ -83,16 +83,15 @@ head SRR6170103_1.fastq.gz        # In this case it's a compressed file so it wi
 
 Now that you have seen the files, continue with the rest of the workflow.
 
+## Step 2: Quality check of the FASTQC files by using FastQC
 
-## 1. Quality assesment of the fastq files using FastQC
-
-FastQC is a quality control tool for high throughput sequence data.
-
-## Step 2: Run FASTQC
+[FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) is a quality control tool for high throughput sequence data.
 
 When running new software it is always useful to understand it first. A quick glimpse to different options can be obtained by looking at the in-built help:
 
-```  
+```sh
+# Find help in the help manual of FastQC
+
 fastqc --help	
 
 Usage: fastqc seqfile1 seqfile2 .. seqfileN
@@ -100,21 +99,28 @@ Usage: fastqc seqfile1 seqfile2 .. seqfileN
 
 - Now let’s assess the quality of our fastq files containing paired-end sequencing reads by running FastQC:
 
-- We can do this either through the command-line (recommended, jump to option two) or by directly running FastQC and opening the files from the window by running the following in the terminal:
+- We can do this either by using the graphical user interface of the program (GUI) or through the command-line (recommended). 
  
-- Graphical Interface option 1:
+##### Graphical User Interface - option 1:
 
 ```
+# open GUI of FastQC by typing fastqc in the command-line (don't forget the ampersand)
+
 fastqc &
 ```
 
 That will open FastQC and you will be able to open the fastq files directly with the program. If you prefer to use the command-line (recommended) do the following:
 
-- Command-line option 2:
+##### Command-line -  option 2:
 
-```  
-fastqc SRR6170103_1.fastq.gz SRR6170103_2.fastq.gz                       (wait till it’s done running)
-mv *.zip *.html FastQC                                                   (move the files to the FastQC folder)
+```sh  
+#Run FastQC on both files and wait till it's done running
+fastqc SRR6170103_1.fastq.gz SRR6170103_2.fastq.gz      
+
+# Keep it tidy by moving the resulting files to the FastQC folder we created at the beginning
+mv *.zip *.html FastQC         
+
+# Go to the FastQC folder
 cd FastQC
 ``` 
 
