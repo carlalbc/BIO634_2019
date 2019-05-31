@@ -145,9 +145,9 @@ Pretty good quality reads! :heavy_check_mark: :octocat:
 
 ![alt text](https://github.com/carlalbc/BIO694_2018/blob/master/img/fastqc_bad1.png)
 
-Those are really bad quality reads! :heavy_multiplication_x: :bangbang: :octocat:
+Those are quite bad quality reads! :heavy_multiplication_x: :bangbang: :octocat:
 
-* Go through this manual https://dnacore.missouri.edu/PDF/FastQC_Manual.pdf to understand each of the results you have gotten in your report.
+:diamond_shape_with_a_dot_inside: Go through this [MANUAL](https://dnacore.missouri.edu/PDF/FastQC_Manual.pdf) to understand each of the results you have gotten in your report. And answer the following:
 
 ## Questions:
 
