@@ -36,7 +36,7 @@ gregor.rot@uzh.ch
 12.00 - 13.00 | *Talk:* Dr. Charlotte Soneson (UZH): RNA-seq analysis [pdf](TALKS/RNAseq_Soneson.pdf) |
 &nbsp; | &nbsp; | &nbsp; 
 14.00 - 15.00 | *Talk:* Dr. Jean-Claude Walser (ETH): RNA-seq in ecology and evolutionary biology [pdf](TALKS/RNAseq_Walser.pdf) | 
-15.00 - 17.30 | **Making sense of gene lists** <br /> [Presentation](GENE_LISTS/MakingSenseOfGeneLists.pdf)  \| [Hands-on](GENE_LISTS/Exercises_MakingSenseOfGeneLists.md) | SW
+15.00 - 17.30 | **Making sense of gene lists** <br /> [Presentation](GENE_LISTS/MakingSenseOfGeneLists.pdf)  \| [Hands-on](GENE_LISTS/Exercises_MakingSenseOfGeneLists.md) | GR
 
 
 ## Prerequisites for the course
