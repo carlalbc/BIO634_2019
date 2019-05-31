@@ -168,55 +168,41 @@ There is usually an expected drop in quality at the 3’ end of the sequences as
 
 **Do not close the FastQC window as we will compare the original files to the ones we will produce after adapter removal and quality filtering.**
 
+## Step 3: Use Trimmomatic for trimming, removing adapter sequences  and low quality reads
 
-## 2. Trimming, removing adaptors and low quality reads with Trimmomatic: 
-
-## Step 3: Use Trimmomatic to remove adapter sequences 
-
-Trimmomatic is a java tool for performing a range of trimming tasks on Illumina paired end and single end read data. The manual can be found [here](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf)
+[Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) is a java tool for performing a range of trimming tasks on Illumina paired end and single end read data. The manual can be found [here](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf)
 
 
-```
+```sh
 java -jar /usr/share/java/trimmomatic.jar PE -phred33  SRR6170103_1.fastq.gz SRR6170103_2.fastq.gz SRR6170103_1_paired.fastq.gz SRR6170103_1_unpaired.fastq.gz SRR6170103_2_paired.fastq.gz SRR6170103_2_unpaired.fastq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
 ```
 
 The parameters used for Trimmomatic are defined as follows:
-1) **PE**
-data is paired end
-2) **phred33**
-Quality scores are 33 offset
-3) **threads 1**
-number of threads to use
-4) **trimlog logfile**
-name of logfile for summary information
-5) **paired_end1.fastq**
-name of input fastq file for left reads
-6) **paired_end2.fastq**
-name of input fastq file for right reads
-7) **Left_paired.fastq**
-paired trimmed output fastq file for left reads
-8) **Left_unpaired.fastq**
-unpaired trimmed output fastq file for left reads
-9) **Right_paired.fastq**
-paired trimmed output fastq file for right reads
-10) **Right_unpaired.fastq**
-unpaired trimmed output fastq file for right reads
-11) **ILLUMINACLIP**
-parameters for the adapter clipping
-12) **TruSeq3-PE-2.fa** 
-text file of adapter sequences to search for
-13) **:2:40:15**
-adapter-read alignment settings – see manual
-14) **MINLEN:36**
-delete reads trimmed below length MINLEN
+
+| Parameter | Definition |
+| ------ | ------ |
+ **PE** | Data is paired end
+**phred33** | Quality scores are 33 offset
+**threads 1** | Number of threads to use
+**trimlog logfile** | Name of logfile for summary information
+**paired_end1.fastq** | Name of input fastq file for left reads
+**paired_end2.fastq** | Name of input fastq file for right reads
+**Left_paired.fastq** | Paired trimmed output fastq file for left reads
+**Left_unpaired.fastq** | Unpaired trimmed output fastq file for left reads
+**Right_paired.fastq** | Paired trimmed output fastq file for right reads
+**Right_unpaired.fastq** | Unpaired trimmed output fastq file for right reads
+**ILLUMINACLIP** | Parameters for the adapter clipping
+**TruSeq3-PE-2.fa** | Text file of adapter sequences to search for
+**:2:40:15** | Adapter-read alignment settings 
+**MINLEN:36** | Delete reads trimmed below length MINLEN
 
 ## Questions: 
 
 1. What does :2:40:15 means?      (Check Trimmomatic’s manual)
-2. How many reads survive after Trimmomatic? (Hint: Check the messages left in the terminal after Trimmomatic)
+2. How many reads survived after Trimmomatic? (Hint: Check the messages left in the terminal after Trimmomatic)
 
 
-**NOTE: Remember that trimmomatic only deletes reads if the length after trimming of adapter sequences is less than MINLEN (which we set to 36bp)**
+:information_source: **NOTE**: Trimmomatic only deletes reads if the length after trimming of adapter sequences is less than MINLEN (which we set to 36bp)
 
 ## Step 4: Use Trimmomatic to filter low quality reads
 
