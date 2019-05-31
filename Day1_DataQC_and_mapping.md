@@ -4,7 +4,6 @@
 ### University of Zürich (UZH) & URPP "Evolution in action"
 
 ![alt text](https://github.com/carlalbc/URPP_tutorials/blob/master/img/Logo_URPP_kl2.png)
-![alt text](https://github.com/carlalbc/BIO634_2019/blob/master/uzhlogo.png)
 
 # Part I.- DataQC, pre-processing and mapping genomes 
 
