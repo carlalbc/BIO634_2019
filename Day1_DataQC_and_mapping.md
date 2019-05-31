@@ -141,11 +141,11 @@ Pretty good quality reads! :heavy_check_mark: :octocat:
 
 
 
-- :information_source: Sometimes you can get very **bad** quality reads. See the example below:information_source::
+- :information_source: Sometimes you can get very **bad** quality reads. See the example below:
 
 ![alt text](https://github.com/carlalbc/BIO694_2018/blob/master/img/fastqc_bad1.png)
 
-Those are really bad quality reads! heavy_multiplication_x: :bangbang: :octocat:
+Those are really bad quality reads! :heavy_multiplication_x: :bangbang: :octocat:
 
 * Go through this manual https://dnacore.missouri.edu/PDF/FastQC_Manual.pdf to understand each of the results you have gotten in your report.
 
