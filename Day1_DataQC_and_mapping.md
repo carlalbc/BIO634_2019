@@ -11,7 +11,7 @@ Before we get started --remember, Linux is your friend :penguin:
 
 A brief reminder of useful commands that will come in handy for Today's workflow:
 
-| Plugin | README |
+| Command | Function |
 | ------ | ------ |
 | ls   | listing files
 less, more | view files
