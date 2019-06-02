@@ -217,10 +217,10 @@ In contrast, for GATK it is recommended to use all 3 BAM preprocessing steps. Le
 
 GATK doesn't work with JDK Java - it requires Oracle Java
 ```
-sudo add-apt-repository ppa:webupd8team/java
-sudo apt-get install oracle-java8-installer
-sudo update-alternatives --config java
-Select Oracle Java from the list
+# install java8 from bio634 site
+cd ~/APPL
+wget http://bioinfo.evolution.uzh.ch/share/bio634/jdk-8u211-linux-x64.tar.gz
+tar xfz jdk-8u211-linux-x64.tar.gz
 ```
 
 
@@ -234,6 +234,7 @@ set -o errexit
 
 #SAMTOOLS=~/software/SAMTOOLS/samtools-1.3/samtools
 SAMTOOLS=samtools
+JAVA=~/APPL/jdk1.8.0_211/bin/java
 GATK=~/APPL/GATK/GenomeAnalysisTK-3.8-1-0-gf15c1c3ef/GenomeAnalysisTK.jar
 PICARD=~/APPL/PICARD/picard.2.18.0.jar
 
@@ -253,7 +254,7 @@ $SAMTOOLS index $BAM_FILE
 java -jar $PICARD CreateSequenceDictionary R=$REF_FILE O=${REF_FILE%%.*}.dict
 
  # sort mappings by name to keep paired reads together
-java -Xmx1g -jar $PICARD SortSam \
+$JAVA -Xmx1g -jar $PICARD SortSam \
 	I=$BAM_FILE \
 	O=${BAM_FILE%%.*}_sorted.bam \
 	SO=queryname \
@@ -261,7 +262,7 @@ java -Xmx1g -jar $PICARD SortSam \
 	2>SortSam_queryname.err
 
  # fix mate information and sort
-java -Xmx1g -jar $PICARD FixMateInformation \
+$JAVA -Xmx1g -jar $PICARD FixMateInformation \
 	I=${BAM_FILE%%.*}_sorted.bam \
 	O=${BAM_FILE%%.*}_fixmate.bam \
 	SO=coordinate \
@@ -270,7 +271,7 @@ java -Xmx1g -jar $PICARD FixMateInformation \
 
 
  # mark duplicates
-java -Xmx1g -jar $PICARD MarkDuplicates \
+$JAVA -Xmx1g -jar $PICARD MarkDuplicates \
 	I=${BAM_FILE%%.*}_fixmate.bam \
 	O=${BAM_FILE%%.*}_rdup.bam \
 	M=duplicate_metrics.txt \
@@ -279,7 +280,7 @@ java -Xmx1g -jar $PICARD MarkDuplicates \
 
 
  # Add Read Groups @RG
-java -Xmx1g -jar $PICARD AddOrReplaceReadGroups \
+$JAVA -Xmx1g -jar $PICARD AddOrReplaceReadGroups \
 	I=${BAM_FILE%%.*}_rdup.bam \
 	O=${BAM_FILE%%.*}_rdup-rg.bam \
 	RGID="NA18507" \
@@ -291,19 +292,19 @@ java -Xmx1g -jar $PICARD AddOrReplaceReadGroups \
 	# 2>AddOrReplaceReadGroups.err
 
  # Build BAM index for fast access
-java -Xmx1g -jar $PICARD BuildBamIndex \
+$JAVA -Xmx1g -jar $PICARD BuildBamIndex \
 	I=${BAM_FILE%%.*}_rdup-rg.bam \
 	2>BuildBamIndex.err
 
 
  # identify regions for indel local realignment of the selected chromosome
-java -Xmx1g -jar $GATK -T RealignerTargetCreator \
+$JAVA -Xmx1g -jar $GATK -T RealignerTargetCreator \
 	-R $REF_FILE \
 	-I ${BAM_FILE%%.*}_rdup-rg.bam \
 	-o target_intervals.list
 
  # perform indel local realignment of the selected chromosome
-java -Xmx1g -jar $GATK -T IndelRealigner \
+$JAVA -Xmx1g -jar $GATK -T IndelRealigner \
 	-R $REF_FILE \
 	-I ${BAM_FILE%%.*}_rdup-rg.bam \
 	-targetIntervals target_intervals.list \
@@ -317,26 +318,23 @@ java -Xmx1g -jar $GATK -T IndelRealigner \
 
  #1. Run UnifiedGenotyper
  # this takes approx. 1.8 min
-java -Xmx1g -jar $GATK -T UnifiedGenotyper \
+$JAVA -Xmx1g -jar $GATK -T UnifiedGenotyper \
 	-R $REF_FILE \
 	-I ${BAM_FILE%%.bam}_realigned.bam \
 	-ploidy 1 \
 	-glm BOTH \
 	-stand_call_conf 30 \
-	-stand_emit_conf 10 \
 	-mbq 10 \
 	-o raw_variants_UG.vcf
  
  #2. Run HaplotypeCaller
-java -Xmx1g -jar $GATK -T HaplotypeCaller \
+$JAVA -Xmx1g -jar $GATK -T HaplotypeCaller \
 	-R $REF_FILE \
 	-I ${BAM_FILE%%.bam}_realigned.bam \
 	--genotyping_mode DISCOVERY \
 	-ploidy 1 \
 	-stand_call_conf 30 \
-	-stand_emit_conf 10 \
 	-o raw_variants_HC.vcf
-	# -L 20
 ```
 
 - Try to understand all the steps.
