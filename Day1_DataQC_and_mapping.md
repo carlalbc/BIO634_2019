@@ -424,9 +424,12 @@ There are several options to visualize the data on IGV:
 
 3) Or run IGV from `/home/student/APLL/`
 
-## Software Installation
 
-In case FastQC is not working properly
+# Software Installation
+
+## FastQC
+In case FastQC is not working properly (there is a bug with `sudo apt-get install`):
+
 ```
 mkdir ~/software
 cd ~/software
@@ -438,62 +441,27 @@ export PATH=$PATH:~/software/FastQC/
 source ~/.bashrc
 ``` 
 
-For Nextera adapters
-
 ## Trim galore and cutadapt
+For Nextera adapters, it seems Trimmomatic is not good to remove them.
 
-```
+```sh
+# Install cutadapt
 sudo apt install python-cutadapt
-
+#Get Trim galore
 wget https://github.com/FelixKrueger/TrimGalore/archive/0.6.1.zip
+# Export path of trim galore
 export PATH=$PATH:~/software/TrimGalore-0.6.1/trim_galore
+#Update your bashrc
 source ~/.bashrc
 ```
 Run Trimgalore: (there is a current bug)
 
 ```sh
+trim_galore --help #see help
+# Run it
 trim_galore --paired --nextera SRR6170103_1_trim_paired.fastq SRR6170103_2_trim_paired.fastq
 ```
-
-
-
-
-
-------------------
-
-Software Installation
-
-
-In case FastQC is not working properly
-
-```
-mkdir software
-cd software
-wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.8.zip
-unzip fastqc_v0.11.8.zip
-cd FastQC
-chmod 755 fastqc
-export PATH=$PATH:~/software/FastQC/
-source ~/.bashrc
-
--------------------------------
-
-For Nextera adapters
-
-## Trim galore and cutadapt
-
-```
-sudo apt install python-cutadapt
-
-wget https://github.com/FelixKrueger/TrimGalore/archive/0.6.1.zip
-export PATH=$PATH:~/software/TrimGalore-0.6.1/trim_galore
-source ~/.bashrc
-```
-Run Trimgalore: (there is a current bug)
-
-```sh
-trim_galore --paired --nextera SRR6170103_1_trim_paired.fastq SRR6170103_2_trim_paired.fastq
-```
+:information_source: There is currently a bug, so we will omit this step.
 
 
 
