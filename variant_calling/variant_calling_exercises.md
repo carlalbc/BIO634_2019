@@ -402,9 +402,8 @@ Here we check how many databases are available for the Arabidopsis genus.
 
 ```
 java -jar snpEff.jar databases | grep Arabidopsis
-TAIR10.26                                                   	Arabidopsis_thaliana                                        	          	                              	http://downloads.sourceforge.net/project/snpeff/databases/v4_1/snpEff_v4_1_TAIR10.26.zip
-alyrata1                                                    …
-...                                              	Arabidopsis_lyrata                                          	          	                              	http://downloads.sourceforge.net/project/snpeff/databases/v4_1/snpEff_v4_1_v.1.0.26.zip
+Arabidopsis_lyrata Arabidopsis_lyrata ENSEMBL_BFMPP_32_24
+Arabidopsis_thaliana Arabidopsis_thaliana ENSEMBL_BFMPP_32_24
 ```
 
 We see that there are databases available for A. thaliana (both TAIR9 and TAIR10 annotation) and A. lyrata. 
@@ -412,7 +411,7 @@ SnpEff can also help you to build a database from reference genome files (Fasta,
 
 We can download and install a selected database like:
 ```
-java -jar snpEff.jar download -v athalianaTair10
+java -jar snpEff.jar download -v Arabidopsis_thaliana
 ```
 
 ### Annotate using SnpEff
