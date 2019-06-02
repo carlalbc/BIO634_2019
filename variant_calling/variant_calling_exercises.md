@@ -468,11 +468,6 @@ NC_012967.1.fasta.gz | E. coli B str. REL606 genome
 ```
 
 The read files can be downloaded from the [ENA SRA study](http://www.ebi.ac.uk/ena/data/view/SRP001569).
-So that you can treat all the data as single-ended for simplicity, you can concatenate two separate FASTQ (paired-end) files using this command
-```
-cat SRR032374.fastq SRR032374_2.fastq > SRR032374.fastq
-```
-Alternatively, you could map that data set as paired-end.
 
 The reference genome file can be downloaded from the [NCBI Genomes page](http://www.ncbi.nlm.nih.gov/genome/167?project_id=58803).
 We renamed the FASTA sequence from "gi|254160123|ref|NC_012967.1|" to "NC_012967" by changing the first line of the NC_012967.1.fasta sequence using a text editor. It's just easier to deal with the shorter name.
