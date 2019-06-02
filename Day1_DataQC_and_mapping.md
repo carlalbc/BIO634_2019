@@ -381,14 +381,31 @@ samtools flagstat SRR6170103_final.bam > SRR6170103_final.flagstat
 2. Do you observe any diferences between the file with and without duplicates? (Hint: look at the flagstat files)
 
 
-### Step 5:  BAM visualization
+### Step 5:  BAM visualization: looking at the aligned reads
 
-We will use the java web start version of IGV.
-Follow this link: ​ https://www.broadinstitute.org/software/igv/download
-Register, and you’ll find the IGV Java Web start.​ ​ Launch IGV with 750 MB.
+Go to the Integrative Genome Viewer (IGV) website http://www.broadinstitute.org/igv/
 
+There are several options to visualize the data on IGV:
+
+1) We can use the java web start version of IGV.
+
+- Follow this link: ​ https://www.broadinstitute.org/software/igv/download
+- Register, and you’ll find the IGV Java Web start.​ ​ Launch IGV with 750 MB.
 - Load the bam file using *E. coli*'s reference genome.
 
-Or run IGV from the /home/student/APLL/
+2) Use the command-line version already installed in the VM
+
+- Open a new tab in the terminal (File | Open Tab)
+- Go to IGV directory with `cd ~/APPL/IGV/IGV_2.4.10/`
+- Launch IGV by typing `./igv.sh` in the terminal
+- Load the fasta file of the genome: File | Load Genome from File...
+- Choose the file for *E. coli*
+- Load the BAM file: File | Load from File...
+- Choose the BAM file: `SRR6170103_final.bam`
+- Load the genome annotation (gff or bed): File | Load from File...
+- Choose the file for *E. coli*
+- You can now navigate the aligned reads, look at genes of interest, coverage, etc.
+
+3) Or run IGV from /home/student/APLL/
 
 
