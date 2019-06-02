@@ -178,6 +178,7 @@ Those are quite bad quality reads! :heavy_multiplication_x: :warning: :bangbang:
 4. What are the warnings we get for each of the fastq files? 
 5. If there are any adaptors that are overrepresented, which type? 
 
+The solutions are [here](). But try to do it on your own.
 :information_source: There is usually an expected drop in quality at the 3’ end of the sequences as well as an expected overrepresentation of adaptor sequences. We will learn how to trim low quality ends and remove adaptors.
 
 **Do not close the FastQC window as we will compare the original files to the ones we will produce after adapter removal and quality filtering.**
@@ -273,8 +274,8 @@ In **my** case it will look like this:
 
 ```
 #Substitute the path below for your own
-/home/vega/URPP_2018/BIO634-2019/software/SOAPec_v2.01/bin/KmerFreq_AR -k 16 -t 1 -q 33 -p Error_Corr files.txt > kmerfreq16.log 2> kmerfreq16.err
-/home/vega/URPP_2018/BIO634-2019/software/SOAPec_v2.01/bin/Corrector_AR -k 16 -Q 33 -t 1 -o 3 Error_Corr.freq.cz Error_Corr.freq.cz.len files.txt > Corr16.log 2>Corr16.err
+/home/vega/URPP_2019/BIO634-2019/software/SOAPec_v2.01/bin/KmerFreq_AR -k 16 -t 1 -q 33 -p Error_Corr files.txt > kmerfreq16.log 2> kmerfreq16.err
+/home/vega/URPP_2019/BIO634-2019/software/SOAPec_v2.01/bin/Corrector_AR -k 16 -Q 33 -t 1 -o 3 Error_Corr.freq.cz Error_Corr.freq.cz.len files.txt > Corr16.log 2>Corr16.err
 ```
 ### :beginner: Questions
 
