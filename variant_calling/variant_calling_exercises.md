@@ -467,13 +467,13 @@ A mixed population of E. coli from an evolution experiment was sequenced at seve
 
 ### Data
 
+```
 File Name | Description
 SRR030252.fastq.gz | Illumina reads, 0K generation individual clone from population
 SRR032374.fastq.gz | Illumina reads, 20K generation mixed population
 SRR032376.fastq.gz | Illumina reads, 40K generation mixed population
 NC_012967.1.fasta.gz | E. coli B str. REL606 genome
-
-
+```
 
 The read files were downloaded from the [ENA SRA study](http://www.ebi.ac.uk/ena/data/view/SRP001569).
 So that you can treat all the data as single-ended for simplicity, we concatenated two separate FASTQ (paired-end) files for sample SRR030252 using this command
