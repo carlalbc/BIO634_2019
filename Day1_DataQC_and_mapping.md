@@ -71,17 +71,33 @@ mkdir FastQC
 wget http://ftp.sra.ebi.ac.uk/vol1/fastq/SRR617/003/SRR6170103/SRR6170103_1.fastq.gz && wget http://ftp.sra.ebi.ac.uk/vol1/fastq/SRR617/003/SRR6170103/SRR6170103_2.fastq.gz 
 ```
 
-- Let’s check the FASTQ files:
+- Check the FASTQ files:
 
 ```sh 
-less SRR6170103_1.fastq.gz        # Exit with Ctrl+Z
-# shows the first 10 lines
-head SRR6170103_1.fastq.gz        # In this case it's a compressed file so it will be non-human readable!
+#View the file using the "less" command
+less SRR6170103_1.fastq.gz              # Exit with Ctrl+Z
 ``` 
+- You could use `head`(shows first 10 lines) and see what happens
+- You can also use `tail` to see the las 10 lines at the end of the file.
 
-- You can also use `tail` to see the end of the file.
+:information_source: A FASTQ file normally uses four lines per sequence (from: Wikipedia).
 
-Now that you have seen the files, continue with the rest of the workflow.
+- Line 1 begins with a '@' character and is followed by a sequence identifier and an optional description (like a FASTA title line).
+- Line 2 is the raw sequence letters.
+- Line 3 begins with a '+' character and is optionally followed by the same sequence identifier (and any description) again.
+- Line 4 encodes the quality values for the sequence in Line 2, and must contain the same number of symbols as letters in the sequence.
+
+Example of FASTQ file:
+```
+@SEQ_ID
+GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTAAATCCATTTGTTCAACTCACAGTTT
++
+!''*((((***+))%%%++)(%%%%).1***-+*''))**55CCF>>>>>>CCCCCCC65
+```
+
+More info on FASTQ files [here](http://maq.sourceforge.net/fastq.shtml)
+
+Now that you have seen the fastq files, continue with the rest of the workflow.
 
 ## Step 2: Quality check of the FASTQC files by using FastQC
 
@@ -406,6 +422,6 @@ There are several options to visualize the data on IGV:
 - Choose the file for *E. coli*
 - You can now navigate the aligned reads, look at genes of interest, coverage, etc.
 
-3) Or run IGV from /home/student/APLL/
+3) Or run IGV from `/home/student/APLL/`
 
 
