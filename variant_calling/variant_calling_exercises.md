@@ -47,8 +47,11 @@ How we can get information about freebayes options:
 freebayes --help
 ```
 
-The reads were already mapped to the *E.coli* DH10B genome, you will find a BAM file `MiSeq_Ecoli_DH10B_110721_PF_subsample.bam`. Let us rename the file to `Ecoli_DH10B.bam` to save typing. 
+The reads were already mapped to the *E.coli* DH10B genome, you will find a BAM file `MiSeq_Ecoli_DH10B_110721_PF_subsample.bam`. Let us rename the file to `Ecoli_DH10B.bam` to save typing:
 
+```
+mv MiSeq_Ecoli_DH10B_110721_PF_subsample.bam Ecoli_DH10B.bam
+```
 
 Get information about the BAM file doing:
 ```
