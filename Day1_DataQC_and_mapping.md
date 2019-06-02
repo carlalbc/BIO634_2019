@@ -431,21 +431,21 @@ There are several options to visualize the data on IGV:
 In case FastQC is not working properly (there is a bug with `sudo apt-get install`):
 
 ```sh
-#make a software directory
+# Make a software directory
 mkdir ~/software
-#Go to software directory
+# Go to software directory
 cd ~/software
-#Get FastQC
+# Get FastQC
 wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.8.zip
-#Unzip it
+# Unzip it
 unzip fastqc_v0.11.8.zip
 #Go to folder
 cd FastQC
-#Change mode to executable
+# Change mode to executable
 chmod 755 fastqc
-#Export path to make it available from anywhere 
+# Export path to make it available from anywhere 
 export PATH=$PATH:~/software/FastQC/
-#Update your bashrc
+# Update your bashrc
 source ~/.bashrc
 ``` 
 
@@ -455,15 +455,15 @@ For Nextera adapters, it seems Trimmomatic is not good to remove them.
 ```sh
 # Install cutadapt
 sudo apt install python-cutadapt
-#make software directory (omit if exists)
+# Make software directory (omit if exists)
 mkdir ~/software
-#go to your software directory
+# Go to your software directory
 cd ~/software
-#Get Trim galore
+# Get Trim galore
 wget https://github.com/FelixKrueger/TrimGalore/archive/0.6.1.zip
 # Export path of trim galore
 export PATH=$PATH:~/software/TrimGalore-0.6.1/trim_galore
-#Update your bashrc
+# Update your bashrc
 source ~/.bashrc
 ```
 Run Trimgalore: (there is a current bug)
