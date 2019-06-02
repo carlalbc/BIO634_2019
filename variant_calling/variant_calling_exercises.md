@@ -434,7 +434,6 @@ VCFtools are specialized tools for working with VCF files: validating, filtering
 Often some regions of the genome are low coverage only (or even without any aligned reads) consequently we cannot tell whether polymorphisms exist in these regions. We want to identify such regions and find out whether they overlap with genes.
 The bedtools utilities are convenient for working with genomic coordinates for example bedtools allows one to intersect, merge, count, complement, and shuffle genomic intervals from multiple files in widely-used genomic file formats such as BAM, BED, GFF/GTF, VCF. You will find the documentation under http://bedtools.readthedocs.org/en/latest/index.html
 
-
 Use `MiSeq_Ecoli_DH10B_110721_PF_subsample.bam` from the first exercise.  
 
 - Try to find out how many nucleotides in the *E. coli* genome do not reach a minimal read coverage of 5, 10 or 20 reads (Hint: Use samtools depth, direct the output into a file and then use awk or R to process the file)
@@ -463,20 +462,19 @@ A mixed population of E. coli from an evolution experiment was sequenced at seve
 
 ```
 File Name | Description
-SRR030252.fastq.gz | Illumina reads, 0K generation individual clone from population
 SRR032374.fastq.gz | Illumina reads, 20K generation mixed population
 SRR032376.fastq.gz | Illumina reads, 40K generation mixed population
 NC_012967.1.fasta.gz | E. coli B str. REL606 genome
 ```
 
-The read files were downloaded from the [ENA SRA study](http://www.ebi.ac.uk/ena/data/view/SRP001569).
-So that you can treat all the data as single-ended for simplicity, we concatenated two separate FASTQ (paired-end) files for sample SRR030252 using this command
+The read files can be downloaded from the [ENA SRA study](http://www.ebi.ac.uk/ena/data/view/SRP001569).
+So that you can treat all the data as single-ended for simplicity, you can concatenate two separate FASTQ (paired-end) files using this command
 ```
-cat SRR030252_1.fastq SRR030252_2.fastq > SRR030252.fastq
+cat SRR032374.fastq SRR032374_2.fastq > SRR032374.fastq
 ```
 Alternatively, you could map that data set as paired-end.
 
-The reference genome file was downloaded from the [NCBI Genomes page](http://www.ncbi.nlm.nih.gov/genome/167?project_id=58803).
+The reference genome file can be downloaded from the [NCBI Genomes page](http://www.ncbi.nlm.nih.gov/genome/167?project_id=58803).
 We renamed the FASTA sequence from "gi|254160123|ref|NC_012967.1|" to "NC_012967" by changing the first line of the NC_012967.1.fasta sequence using a text editor. It's just easier to deal with the shorter name.
 
 ### Map Reads
