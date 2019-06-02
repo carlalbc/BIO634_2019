@@ -120,6 +120,15 @@ As we have to do this for each vcf file, we write a script that does the job. Sa
 
 [vt](http://genome.sph.umich.edu/wiki/vt) is a toolkit for variant annotation and manipulation. In addition to other methods, it provides a nice method, vt peek, to determine basic statistics about the variants in a VCF file.
 
+Install vt:
+
+```
+cd ~/APPL
+git clone https://github.com/atks/vt.git
+cd vt
+make
+```
+
 Add the directory that contain the vt binary to the PATH like this:
 ```
 export PATH=$PATH:~/APPL/vt
