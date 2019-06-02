@@ -182,7 +182,7 @@ Seeing is believing! One should always have at look at the data to get a feeling
 Go to the Integrative Genome Viewer (IGV) website http://www.broadinstitute.org/igv/ 
 
 1. Open a new tab in the terminal (File | Open Tab)
-1. Go to IGV directory doing `cd ~/APPL/IGV/IGV_2.4.10/`
+1. Go to IGV directory doing `cd ~/APPL/IGV_Linux_2.5.2/`
 2. Launch IGV doing `./igv.sh`
 3. Load the fasta file of the genome: File | Load Genome from File...  
   then choose the file `EcoliDH10B.fa`
