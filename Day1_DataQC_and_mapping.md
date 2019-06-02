@@ -171,15 +171,14 @@ Those are quite bad quality reads! :heavy_multiplication_x: :warning: :bangbang:
 1. What’s the total number of sequences in each of the paired-end fastq files?  (Hint: look at the Basic statistics module)
 
 - SRR6170103_1 Total number of sequences  _________
-
 - SRR6170103_2 Total number of sequences  _________
 
-2. What’s the type of encoding used?
+2. What’s the type of encoding used? 
 3. What’s the length of the reads? 
 4. What are the warnings we get for each of the fastq files? 
-5. Which sequence seems to be overrepresented? 
+5. If there are any adaptors that are overrepresented, which type? 
 
-There is usually an expected drop in quality at the 3’ end of the sequences as well as an expected overrepresentation of adaptor sequences. We will learn how to trim low quality ends and remove adaptors.
+:information_source: There is usually an expected drop in quality at the 3’ end of the sequences as well as an expected overrepresentation of adaptor sequences. We will learn how to trim low quality ends and remove adaptors.
 
 **Do not close the FastQC window as we will compare the original files to the ones we will produce after adapter removal and quality filtering.**
 
