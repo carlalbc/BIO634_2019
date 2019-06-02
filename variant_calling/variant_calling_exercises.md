@@ -414,22 +414,16 @@ We can download and install a selected database like:
 java -jar snpEff.jar download -v Arabidopsis_thaliana
 ```
 
-### Annotate using SnpEff
+### Annotate using SnpEff (example)
+
+Let's assume you have a VCF file and you want to annotate the variants in that file. An example file is provided in examples/test.chr22.vcf (this data is from the 1000 Genomes project, so the reference genome is the human genome GRCh37).
+You can annotate the file by running the following command (as an input, we use a Variant Call Format (VCF) file available in SnpEff's examples directory).
 
 ```
-java -Xmx4g -jar snpEff.jar -stats summary.html athalianaTair10 test.Ath.vcf > test.Ath.ann.vcf
+java -Xmx4g -jar snpEff.jar -v GRCh37.75 examples/test.chr22.vcf > test.chr22.ann.vcf
 ```
 
-```
-##SnpEffVersion="4.1e (build 2015-05-02), by Pablo Cingolani"
-##SnpEffCmd="SnpEff  athalianaTair10 test.Ath.vcf "
-##INFO=<ID=ANN,Number=.,Type=String,Description="Functional annotations: 'Allele | Annotation | Annotation_Impact | Gene_Name | Gene_ID | Feature_Type | Feature_ID | Transcript_BioType | Rank | HGVS.c | HGVS.p | cDNA.pos / cDNA.length | CDS.pos / CDS.length | AA.pos / AA.length | Distance | ERRORS / WARNINGS / INFO' ">
-##INFO=<ID=LOF,Number=.,Type=String,Description="Predicted loss of function effects for this variant. Format: 'Gene_Name | Gene_ID | Number_of_transcripts_in_gene | Percent_of_transcripts_affected' ">
-##INFO=<ID=NMD,Number=.,Type=String,Description="Predicted nonsense mediated decay effects for this variant. Format: 'Gene_Name | Gene_ID | Number_of_transcripts_in_gene | Percent_of_transcripts_affected' ">
-Chr1	117511	.	C	T	.	.	28,27,14,82,;ANN=T|synonymous_variant|LOW|AT1G01300|AT1G01300|transcript|AT1G01300.1|Coding|1/1|c.447C>T|p.Gly149Gly|569/1822|447/1458|149/485||,T|synonymous_variant|LOW|Exon_1_117065_118522|Gene_AT1G01300.1-Protein|transcript|AT1G01300.1-Protein|Coding|1/1|c.447C>T|p.Gly149Gly|447/1458|447/1458|149/485||,T|upstream_gene_variant|MODIFIER|AT1G01305|AT1G01305|transcript|AT1G01305.1|Coding||c.-33C>T|||||1886|,T|upstream_gene_variant|MODIFIER|Exon_1_119429_119854|Gene_AT1G01305.1-Protein|transcript|AT1G01305.1-Protein|Coding||c.-1C>T|||||1918|,T|upstream_gene_variant|MODIFIER|AT1G01310|AT1G01310|transcript|AT1G01310.1|Coding||c.-68C>T|||||2643|,T|upstream_gene_variant|MODIFIER|Exon_1_120221_120946|Gene_AT1G01310.1-Protein|transcript|AT1G01310.1-Protein|Coding||c.-1C>T|||||2710|,T|downstream_gene_variant|MODIFIER|AT1G01280|AT1G01280|transcript|AT1G01280.1|Coding||c.*1560C>T|||||3564|,T|downstream_gene_variant|MODIFIER|Exon_1_112290_113195|Gene_AT1G01280.1-Protein|transcript|AT1G01280.1-Protein|Coding||c.*1533C>T|||||3606|,T|downstream_gene_variant|MODIFIER|AT1G01290|AT1G01290|transcript|AT1G01290.1|Coding||c.*826C>T|||||1962|,T|downstream_gene_variant|MODIFIER|Exon_1_114299_114433|Gene_AT1G01290.1-Protein|transcript|AT1G01290.1-Protein|Coding||c.*813C>T|||||2215|,T|downstream_gene_variant|MODIFIER|Exon_1_114299_114433|Gene_AT1G01290.2-Protein|transcript|AT1G01290.2-Protein|Coding||c.*813C>T|||||2215|,T|downstream_gene_variant|MODIFIER|AT1G01320|AT1G01320|transcript|AT1G01320.1|Coding||c.*5643G>A|||||3613|,T|downstream_gene_variant|MODIFIER|Exon_1_130039_130099|Gene_AT1G01320.1-Protein|transcript|AT1G01320.1-Protein|Coding||c.*5394G>A|||||4071|,T|downstream_gene_variant|MODIFIER|Exon_1_130039_130099|Gene_AT1G01320.2-Protein|transcript|AT1G01320.2-Protein|Coding||c.*5364G>A|||||4071|,T|downstream_gene_variant|MODIFIER|AT1G01290|AT1G01290|transcript|AT1G01290.2|Coding||c.*826C>T|||||1403|,T|downstream_gene_variant|MODIFIER|AT1G01320|AT1G01320|transcript|AT1G01320.2|Coding||c.*5620G>A|||||3556|
-```
 See the documentation for more options and functions.
-
 
 ### Exercise: VCFtools
 
