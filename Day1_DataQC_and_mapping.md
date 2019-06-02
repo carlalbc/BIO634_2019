@@ -264,8 +264,8 @@ It will open up gedit where you have to write the path of the files that you cre
 In **my** case it will look like this:
 
 ```
-/home/vega/URPP_2018/BIO634-2019/PartI/fastq/SRR6170103/SRR6170103_1_trim_paired.fastq
-/home/vega/URPP_2018/BIO634-2019/PartI/fastq/SRR6170103/SRR6170103_2_trim_paired.fastq
+/home/vega/URPP_2019/BIO634-2019/PartI/fastq/SRR6170103/SRR6170103_1_trim_paired.fastq
+/home/vega/URPP_2019/BIO634-2019/PartI/fastq/SRR6170103/SRR6170103_2_trim_paired.fastq
 ```
 - Save the file (Ctrl+S) and exit (Alt+F4). 
 - Run the `KmerFreq_AR` command below and when it finishes run the `Corrector_AR` command.
