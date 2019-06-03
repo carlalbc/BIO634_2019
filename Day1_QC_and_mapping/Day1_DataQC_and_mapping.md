@@ -264,8 +264,8 @@ It will open up gedit where you have to write the path of the files that you cre
 In **my** case it will look like this:
 
 ```
-/home/vega/URPP_2019/BIO634-2019/PartI/fastq/SRR6170103/SRR6170103_1_trim_paired.fastq
-/home/vega/URPP_2019/BIO634-2019/PartI/fastq/SRR6170103/SRR6170103_2_trim_paired.fastq
+/home/student/mapping/fastq/SRR6170103/SRR6170103_1_trim_paired.fastq
+/home/student/mapping/fastq/SRR6170103/SRR6170103_2_trim_paired.fastq
 ```
 - Save the file (Ctrl+S) and exit (Alt+F4). 
 - Run the `KmerFreq_AR` command below and when it finishes run the `Corrector_AR` command.
@@ -274,8 +274,8 @@ In **my** case it will look like this:
 
 ```
 #Substitute the path below for your own
-/home/vega/URPP_2019/BIO634-2019/software/SOAPec_v2.01/bin/KmerFreq_AR -k 16 -t 1 -q 33 -p Error_Corr files.txt > kmerfreq16.log 2> kmerfreq16.err
-/home/vega/URPP_2019/BIO634-2019/software/SOAPec_v2.01/bin/Corrector_AR -k 16 -Q 33 -t 1 -o 3 Error_Corr.freq.cz Error_Corr.freq.cz.len files.txt > Corr16.log 2>Corr16.err
+/home/student/mapping/fastq/SRR6170103/software/SOAPec_v2.01/bin/KmerFreq_AR -k 16 -t 1 -q 33 -p Error_Corr files.txt > kmerfreq16.log 2> kmerfreq16.err
+/home/student/mapping/fastq/SRR6170103/software/SOAPec_v2.01/bin/Corrector_AR -k 16 -Q 33 -t 1 -o 3 Error_Corr.freq.cz Error_Corr.freq.cz.len files.txt > Corr16.log 2>Corr16.err
 ```
 ### :beginner: Questions
 
