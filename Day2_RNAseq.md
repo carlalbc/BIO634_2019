@@ -4,8 +4,6 @@
 ### University of Zürich (UZH) & URPP Evolution in action
 ----------
 ## Day 2.- RNA-seq and gene expression analyses
--------------------------------------------------
-
 ### I. Analyzing RNA-seq data with Salmon
 
 Today we will use **[Salmon](https://combine-lab.github.io/salmon/)** to align a transcriptome :fish:
