@@ -355,7 +355,9 @@ See bwa manual [here](http://bio-bwa.sourceforge.net/bwa.shtml) for more options
 
 - Convert the new sam file to bam format (bam is a binary version of the sam format):
 ```
-samtools view -Sb SRR6170103.sam > SRR6170103.bam
+samtools view -b SRR6170103.sam -o SRR6170103.bam #depending on version of samtools
+
+samtools view -Sb SRR6170103.sam > SRR6170103.bam #depending on version of samtools
 ```
 - Sort the bam file
 ```
