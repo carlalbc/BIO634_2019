@@ -47,14 +47,15 @@ Commands:
 
 ```
 
+### Step 1: Getting the data
 
-## Step 1: Analyzing RNA-seq data with Salmon
-
+##### a) Obtaining a transcriptome and building and index 
 In order to quantify transcript-level abundances, Salmon requires a target transcriptome. 
 
 This transcriptome is given to Salmon in the form of a (possibly compressed) multi-FASTA file, with each entry providing the sequence of a transcript. 
 
-For this example, we’ll be analyzing some *Arabidopsis thaliana* data, so we’ll download and index the *A. thaliana* transcriptome. First, create a directory where we’ll do our analysis, let’s call it `salmon`: 
+For this example, we’ll be analyzing some *Arabidopsis thaliana* data, so we’ll download and index the *A. thaliana* transcriptome. 
+- First, create a directory where we’ll do our analysis, let’s call it `salmon`: 
 
 
 ```sh
@@ -63,17 +64,47 @@ mkdir salmon
 cd salmon
 ```
 
+- Download the transcriptome:
+
+```sh
+$ curl ftp://ftp.ensemblgenomes.org/pub/plants/release-28/fasta/arabidopsis_thaliana/cdna/Arabidopsis_thaliana.TAIR10.28.cdna.all.fa.gz -o athal.fa.gz
+```
+
 Here, we’ve used a reference transcriptome for Arabadopsis. However, one of the benefits of performing quantification directly on the transcriptome (rather than via the host genome), is that one can easily quantify assembled transcripts as well (obtained via software such as StringTie for organisms with a reference or Trinity for de novo RNA-seq experiments).
 
-Next, we’re going to build an index on our transcriptome. The index is a structure that salmon uses to quasi-map RNA-seq reads during quantification. The index need only be constructed once per transcriptome, and it can then be reused to quantify many experiments. We use the index command of salmon to build our index:
+Next, we’re going to build an index on our transcriptome. The index is a structure that salmon uses to quasi-map RNA-seq reads during quantification. The index need only be constructed once per transcriptome, and it can then be reused to quantify many experiments. 
+
+- Now we use the index command of salmon to build our index:
 
 
 ```
 salmon index -t athal.fa.gz -i athal_index
 ```
-
 More info on parameters for indexing [here](https://salmon.readthedocs.io/en/latest/)
 
+##### b) Obtaining sequencing data
+
+In addition to the index, salmon obviously requires the RNA-seq reads from the experiment to perform quantification. In this tutorial, we’ll be analyzing data from this [4-condition experiment](https://www.ebi.ac.uk/ena/data/view/PRJDB2508)[accession PRJDB2508]. You can use the following shell script to obtain the raw data and place the corresponding read files in the proper locations. Here, we’re simply placing all of the data in a directory called `data`, and the left and right reads for each sample in a sub-directory labeled with that sample’s ID (i.e. `DRR016125_1.fastq.gz` and `DRR016125_2.fastq.gz` go in a folder called `data/DRR016125`).
+
+```
+#!/bin/bash
+mkdir data
+cd data
+for i in `seq 25 40`; 
+do 
+  mkdir DRR0161${i}; 
+  cd DRR0161${i}; 
+  wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/DRR016/DRR0161${i}/DRR0161${i}_1.fastq.gz; 
+  wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/DRR016/DRR0161${i}/DRR0161${i}_2.fastq.gz; 
+  cd ..; 
+done
+cd .. 
+```
+Place this commands in a script called `download_reads.sh`. To download the data, run the scrip and wait for it to complete:
+
+```
+bash download_reads.sh
+```
 
 # II. Exploration of airway library: 
 
