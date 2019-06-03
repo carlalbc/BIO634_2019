@@ -10,7 +10,7 @@
 
 Today we will use **[Salmon](https://combine-lab.github.io/salmon/)** to align a transcriptome :fish:
 
-[Salmon](https://combine-lab.github.io/salmon/) is a tool for quantifying the expression of transcripts using RNA-seq data. Salmon uses new algorithms (specifically, coupling the concept of *quasi-mapping* with a two-phase inference procedure) to provide accurate expression estimates very quickly (i.e. *wicked-fast*) and while using little memory. In Salmon it's all about quantification! 
+[Salmon](https://combine-lab.github.io/salmon/) is a tool for quantifying the expression of transcripts using RNA-seq data. Salmon uses new algorithms (specifically, coupling the concept of *[quasi-mapping](https://academic.oup.com/bioinformatics/article/32/12/i192/2288985)* with a two-phase inference procedure) to provide accurate expression estimates very quickly (i.e. *wicked-fast*) and while using little memory. In Salmon it's all about quantification! 
 
 :information_source: You could also use the STAR aligner, it is particularly good for all genomes where there are no alternatives alleles. For genomes such as hg38 that have alt alleles, hisat2 should be used as it handles the alts correctly and STAR does not yet. Use Tophat2 only if you do not have enough RAM available to run STAR (about 30 GB). The documentation for STAR is available [here](https://github.com/alexdobin/STAR/raw/master/doc/STARmanual.pdf).
 
@@ -279,48 +279,12 @@ legend("topleft", xjust=1, yjust=1, legend=c("FDR<0.05 edgeR only", "FDR<0.05 DE
 - Taken from "A survey of best practices for RNA-seq data analysis" https://doi.org/10.1186/s13059-016-0881-8
 
 
+## Useful workflows to learn RNA-seq data analyses
 
+- [RNA-seq workflow - gene-level exploratory analysis and differential expression](https://www.bioconductor.org/help/course-materials/2016/CSAMA/lab-3-rnaseq/rnaseq_gene_CSAMA2016.html).
+- [Analysis of Genomics Data with R/Bioconductor](https://ivanek.github.io/analysisOfGenomicsDataWithR/06_RNAseqFromFASTQtoCountData_html.html)
+- 
 
-:information_source: Today we will work with the Jupyter notebook
-
-## Jupyter notebook and R installation
-
-- For installing under Debian (command under Ubuntu are analogous), as root:
-
-```sh
-#Become root
-sudo su        #Give password "URPP$2019" for the student account and press enter
-
-#In case python 3 it's not installed
-apt-get install build-essential python3-dev python3-pip
-```
-
-- Then, after the installation (again, as root) run:
-
-`pip3 install jupyter`
-
-:information_source: If the last command was launched without root privileges, Jupyter is not available in the command line, but it can be launched:   `~/.local/bin/jupyter-notebook`
-
-:information_source: If Jupyter was installed for all the users (with root priviledges), then simply type in the terminal:
-`jupyter-notebook`
-
-- The R installation is, with root privileges, as easy as:
-
-`apt-get install r-base r-base-dev libssl-dev libcurl3-dev curl`
-
-- The installation of the R kernel for Jupyter is performed under R command line (as from the GitHub page of the project, https://github.com/IRkernel/IRkernel):
-
-```sh
-#Enter R with root priviledges in the terminal, give the same password than before, URPP$2019 and type:
-sudo R
-```
-- Run the following in R:
-```r
-install.packages(c('pbdZMQ', 'repr', 'devtools')) 
-devtools::install_github('IRkernel/IRkernel') 
-IRkernel::installspec()
-```
-Now the kernel is installed. Launch Jupyter (by typing `jupyter notebook`) and open the file given [here]() from the Jupyter notebook
 
 
 
