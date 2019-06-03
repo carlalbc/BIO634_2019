@@ -19,7 +19,7 @@ gregor.rot@uzh.ch
 &nbsp; | &nbsp; | &nbsp;
 -------- | --- | --- 
 9.30 - 9.40 | **Welcome & Introduction** | CB&GR
-9.40 - 11:00 | **QC and Mapping** <br /> [Presentation](https://github.com/carlalbc/BIO634_2019/blob/master/Day1_QC_and_mapping/Day1_DataQC_and_BWAmapping.pdf) \| [Hands-on](https://github.com/carlalbc/BIO634_2019/blob/master/Day1_DataQC_and_mapping.md) | CB
+9.40 - 11:00 | **QC and Mapping** <br /> [Presentation](https://github.com/carlalbc/BIO634_2019/blob/master/Day1_QC_and_mapping/Day1_DataQC_and_BWAmapping.pdf) \| [Hands-on](https://github.com/carlalbc/BIO634_2019/blob/master/Day1_QC_and_mapping/Day1_DataQC_and_mapping.md) | CB
 11:00 - 11.20 | *Coffee break*
 11.20 - 12.30 | **QC and Mapping: Continuation** | CB
 12.30 - 13.30 | *Lunch at the cafeteria*
