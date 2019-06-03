@@ -8,78 +8,72 @@
 
 # Day 2.- RNA sequencing: Transcriptomes and differential gene expression analyses
 
-# I. Aligning transcriptomes with STAR
+# I. Aligning transcriptomes with Salmon
 
-## Step 1: Read mapping with STAR aligner:
+Today we will use **[Salmon](https://combine-lab.github.io/salmon/)** to align a transcriptome :fish:
+[Salmon](https://combine-lab.github.io/salmon/) is a tool for quantifying the expression of transcripts using RNA-seq data. Salmon uses new algorithms (specifically, coupling the concept of *quasi-mapping* with a two-phase inference procedure) to provide accurate expression estimates very quickly (i.e. *wicked-fast*) and while using little memory. In Salmon it's all about quantification! 
 
-It is recommended using the STAR aligner for all genomes where there are no alternative alleles. For genomes such as hg38 that have alt alleles, hisat2 should be used as it handles the alts correctly and STAR does not yet. Use Tophat2 only if you do not have enough RAM available to run STAR (about 30 GB). The documentation for STAR is available [here](https://github.com/alexdobin/STAR/raw/master/doc/STARmanual.pdf)
+:information_source: You could also use the STAR aligner, it is particularly good for all genomes where there are no alternatives alleles. For genomes such as hg38 that have alt alleles, hisat2 should be used as it handles the alts correctly and STAR does not yet. Use Tophat2 only if you do not have enough RAM available to run STAR (about 30 GB). The documentation for STAR is available [here](https://github.com/alexdobin/STAR/raw/master/doc/STARmanual.pdf).
 
-Today we will work with data from the Zebrafish at different stages of differentiation. The data files are contained in the subdirectory called data and are the following:
+### Salmon installation
 
-- 2cells_1.fastq and 2cells_2.fastq: these files are based on RNA-seq data of a 2-cell zebrafish embryo, and
-- 6h_1.fastq and 6h_2.fastq: these files are based on RNA-seq data of zebrafish embryos 6h post fertilization.
+Installation from source: 
 
-## Step 2: Install STAR aligner
-
+```sh
+# Make software directory in your home folder
+mkdir ~/software
+# Get the source file
+wget https://github.com/COMBINE-lab/salmon/releases/download/v0.14.0/salmon-0.14.0_linux_x86_64.tar.gz
+# Uncompress the file
+tar xzvf salmon-0.14.0_linux_x86_64.tar.gz
+# Export salmon into your PATH variable
+export PATH=$PATH:~/software/salmon-latest_linux_x86_64/bin/
 ```
-sudo apt install rna-star
+:information_source: If you had conda installed in your system, you could also install it with conda which would be much faster.
+
+- Run salmon in the terminal:
 ```
+$ salmon -h
+salmon v0.14.0
 
-- The documentation for STAR is available [here](https://github.com/alexdobin/STAR/raw/master/doc/STARmanual.pdf)
+Usage:  salmon -h|--help or 
+        salmon -v|--version or 
+        salmon -c|--cite or 
+        salmon [--no-version-check] <COMMAND> [-h | options]
 
-## Step 3: Prepare all the directories and download the data
-
-- Remember you can go from one directory to the next using ***cd***. Now let's create a new directory called STARGenome.
-
-```
-mkdir danRer 
-mkdir danRer/reference danRer/data
-cd danRer
-wget ftp://ftp.ebi.ac.uk/pub/training/Train_online/RNA-seq_exercise/2cells_1.fastq ftp://ftp.ebi.ac.uk/pub/training/Train_online/RNA-seq_exercise/2cells_2.fastq ftp://ftp.ebi.ac.uk/pub/training/Train_online/RNA-seq_exercise/6h_1.fastq ftp://ftp.ebi.ac.uk/pub/training/Train_online/RNA-seq_exercise/6h_2.fastq -P data
-wget ftp.ensembl.org/pub/release-93/fasta/danio_rerio/dna/Danio_rerio.GRCz11.dna.toplevel.fa.gz -P reference
-wget ftp://ftp.ensembl.org/pub/release-93/gtf/danio_rerio/Danio_rerio.GRCz11.93.gtf.gz -P reference
-```
-
-- If you feel adventurous you can run FastQC on all the reads in the **data** folder we just created using **cd** and find out the read length and quality:
-
-```
-fastqc *.gz
-firefox *.html
-```
-
-## Step 4: Generate the genome index with STAR
-
-- Run STAR in "genomeGenerate" mode
-
-```
- STAR  [options]... --genomeDir REFERENCE   --readFilesIn R1.fq R2.fq
-```
-
-```
-mkdir STARindex
-gunzip reference/*.gz
-
-STAR --runMode genomeGenerate --readFilesCommand zcat --genomeDir STARindex --genomeFastaFiles danRer11.fa --sjdbGTFfile danRer11.gtf --sjdbOverhang 75 --runThreadN 4
+Commands:
+     index Create a salmon index
+     quant Quantify a sample
+     alevin single cell analysis
+     swim  Perform super-secret operation
+     quantmerge Merge multiple quantifications into a single file
 
 ```
 
-## Step 5: Perform the alignment with STAR:
 
-- Make a folder to store the STAR output in it
+## Step 1: Analyzing RNA-seq data with Salmon
 
-```
-mkdir alignment_STAR
-```
-- You can align the fastq files to the genome. The commands for this are explained in section 3.1 of the manual.12
+In order to quantify transcript-level abundances, Salmon requires a target transcriptome. This transcriptome is given to Salmon in the form of a (possibly compressed) multi-FASTA file, with each entry providing the sequence of a transcript. For this example, we’ll be analyzing some Arabidopsis thaliana data, so we’ll download and index the A. thaliana transcriptome. First, create a directory where we’ll do our analysis, let’s call it `salmon`: 
 
-Now align the pair of files from the 2cells sample to the genome, using the following parameters:
 
 
 ```
-STAR --runThreadN 4 --genomeDir danRer11.fa --readFilesIn ../data/2cells_1.fastq  ../data/2cells_2.fastq --outSAMtype BAM SortedByCoordinate
+# Make a working directory and go to it
+mkdir salmon
+cd salmon
 ```
 
-Do the same for the other pair of reads (6h_1.fastq and 6h_2.fastq)
+Here, we’ve used a reference transcriptome for Arabadopsis. However, one of the benefits of performing quantification directly on the transcriptome (rather than via the host genome), is that one can easily quantify assembled transcripts as well (obtained via software such as StringTie for organisms with a reference or Trinity for de novo RNA-seq experiments).
+
+Next, we’re going to build an index on our transcriptome. The index is a structure that salmon uses to quasi-map RNA-seq reads during quantification. The index need only be constructed once per transcriptome, and it can then be reused to quantify many experiments. We use the index command of salmon to build our index:
+
+
+```
+salmon index -t athal.fa.gz -i athal_index
+```
+
+More info on parameters for indexing [here](https://salmon.readthedocs.io/en/latest/)
+
 
 # II. Exploration of airway library: 
 
@@ -217,3 +211,53 @@ legend("topleft", xjust=1, yjust=1, legend=c("FDR<0.05 edgeR only", "FDR<0.05 DE
 ```
 
 - Taken from "A survey of best practices for RNA-seq data analysis" https://doi.org/10.1186/s13059-016-0881-8
+
+
+
+
+:information_source: Today we will work with the Jupyter notebook
+
+## Jupyter notebook and R installation
+
+- For installing under Debian (command under Ubuntu are analogous), as root:
+
+```sh
+#Become root
+sudo su        #Give password "URPP$2019" for the student account and press enter
+
+#In case python 3 it's not installed
+apt-get install build-essential python3-dev python3-pip
+```
+
+- Then, after the installation (again, as root) run:
+
+`pip3 install jupyter`
+
+:information_source: If the last command was launched without root privileges, Jupyter is not available in the command line, but it can be launched:   `~/.local/bin/jupyter-notebook`
+
+:information_source: If Jupyter was installed for all the users (with root priviledges), then simply type in the terminal:
+`jupyter-notebook`
+
+- The R installation is, with root privileges, as easy as:
+
+`apt-get install r-base r-base-dev libssl-dev libcurl3-dev curl`
+
+- The installation of the R kernel for Jupyter is performed under R command line (as from the GitHub page of the project, https://github.com/IRkernel/IRkernel):
+
+```sh
+#Enter R with root priviledges in the terminal, give the same password than before, URPP$2019 and type:
+sudo R
+```
+- Run the following in R:
+```r
+install.packages(c('pbdZMQ', 'repr', 'devtools')) 
+devtools::install_github('IRkernel/IRkernel') 
+IRkernel::installspec()
+```
+Now the kernel is installed. Launch Jupyter (by typing `jupyter notebook`) and open the file given [here]() from the Jupyter notebook
+
+
+
+
+
+
