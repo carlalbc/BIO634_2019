@@ -11,6 +11,7 @@
 # I. Aligning transcriptomes with Salmon
 
 Today we will use **[Salmon](https://combine-lab.github.io/salmon/)** to align a transcriptome :fish:
+
 [Salmon](https://combine-lab.github.io/salmon/) is a tool for quantifying the expression of transcripts using RNA-seq data. Salmon uses new algorithms (specifically, coupling the concept of *quasi-mapping* with a two-phase inference procedure) to provide accurate expression estimates very quickly (i.e. *wicked-fast*) and while using little memory. In Salmon it's all about quantification! 
 
 :information_source: You could also use the STAR aligner, it is particularly good for all genomes where there are no alternatives alleles. For genomes such as hg38 that have alt alleles, hisat2 should be used as it handles the alts correctly and STAR does not yet. Use Tophat2 only if you do not have enough RAM available to run STAR (about 30 GB). The documentation for STAR is available [here](https://github.com/alexdobin/STAR/raw/master/doc/STARmanual.pdf).
