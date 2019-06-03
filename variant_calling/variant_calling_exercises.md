@@ -2,7 +2,7 @@
 ## Variant Calling 2
 
 ### Evolution in Action
-### Stefan Wyder
+### Adapted from Stefan Wyder class on BIO634 2018
   
 ![URPP logo](../Logo_URPP_kl2.png)  
   
@@ -47,8 +47,11 @@ How we can get information about freebayes options:
 freebayes --help
 ```
 
-The reads were already mapped to the *E.coli* DH10B genome, you will find a BAM file `MiSeq_Ecoli_DH10B_110721_PF_subsample.bam`. Let us rename the file to `Ecoli_DH10B.bam` to save typing. 
+The reads were already mapped to the *E.coli* DH10B genome, you will find a BAM file `MiSeq_Ecoli_DH10B_110721_PF_subsample.bam`. Let us rename the file to `Ecoli_DH10B.bam` to save typing:
 
+```
+mv MiSeq_Ecoli_DH10B_110721_PF_subsample.bam Ecoli_DH10B.bam
+```
 
 Get information about the BAM file doing:
 ```
@@ -117,6 +120,15 @@ As we have to do this for each vcf file, we write a script that does the job. Sa
 
 [vt](http://genome.sph.umich.edu/wiki/vt) is a toolkit for variant annotation and manipulation. In addition to other methods, it provides a nice method, vt peek, to determine basic statistics about the variants in a VCF file.
 
+Install vt:
+
+```
+cd ~/APPL
+git clone https://github.com/atks/vt.git
+cd vt
+make
+```
+
 Add the directory that contain the vt binary to the PATH like this:
 ```
 export PATH=$PATH:~/APPL/vt
@@ -170,7 +182,7 @@ Seeing is believing! One should always have at look at the data to get a feeling
 Go to the Integrative Genome Viewer (IGV) website http://www.broadinstitute.org/igv/ 
 
 1. Open a new tab in the terminal (File | Open Tab)
-1. Go to IGV directory doing `cd ~/APPL/IGV/IGV_2.4.10/`
+1. Go to IGV directory doing `cd ~/APPL/IGV_Linux_2.5.2/`
 2. Launch IGV doing `./igv.sh`
 3. Load the fasta file of the genome: File | Load Genome from File...  
   then choose the file `EcoliDH10B.fa`
@@ -214,10 +226,10 @@ In contrast, for GATK it is recommended to use all 3 BAM preprocessing steps. Le
 
 GATK doesn't work with JDK Java - it requires Oracle Java
 ```
-sudo add-apt-repository ppa:webupd8team/java
-sudo apt-get install oracle-java8-installer
-sudo update-alternatives --config java
-Select Oracle Java from the list
+# install java8 from bio634 site
+cd ~/APPL
+wget http://bioinfo.evolution.uzh.ch/share/bio634/jdk-8u211-linux-x64.tar.gz
+tar xfz jdk-8u211-linux-x64.tar.gz
 ```
 
 
@@ -231,6 +243,7 @@ set -o errexit
 
 #SAMTOOLS=~/software/SAMTOOLS/samtools-1.3/samtools
 SAMTOOLS=samtools
+JAVA=~/APPL/jdk1.8.0_211/bin/java
 GATK=~/APPL/GATK/GenomeAnalysisTK-3.8-1-0-gf15c1c3ef/GenomeAnalysisTK.jar
 PICARD=~/APPL/PICARD/picard.2.18.0.jar
 
@@ -250,7 +263,7 @@ $SAMTOOLS index $BAM_FILE
 java -jar $PICARD CreateSequenceDictionary R=$REF_FILE O=${REF_FILE%%.*}.dict
 
  # sort mappings by name to keep paired reads together
-java -Xmx1g -jar $PICARD SortSam \
+$JAVA -Xmx1g -jar $PICARD SortSam \
 	I=$BAM_FILE \
 	O=${BAM_FILE%%.*}_sorted.bam \
 	SO=queryname \
@@ -258,7 +271,7 @@ java -Xmx1g -jar $PICARD SortSam \
 	2>SortSam_queryname.err
 
  # fix mate information and sort
-java -Xmx1g -jar $PICARD FixMateInformation \
+$JAVA -Xmx1g -jar $PICARD FixMateInformation \
 	I=${BAM_FILE%%.*}_sorted.bam \
 	O=${BAM_FILE%%.*}_fixmate.bam \
 	SO=coordinate \
@@ -267,7 +280,7 @@ java -Xmx1g -jar $PICARD FixMateInformation \
 
 
  # mark duplicates
-java -Xmx1g -jar $PICARD MarkDuplicates \
+$JAVA -Xmx1g -jar $PICARD MarkDuplicates \
 	I=${BAM_FILE%%.*}_fixmate.bam \
 	O=${BAM_FILE%%.*}_rdup.bam \
 	M=duplicate_metrics.txt \
@@ -276,7 +289,7 @@ java -Xmx1g -jar $PICARD MarkDuplicates \
 
 
  # Add Read Groups @RG
-java -Xmx1g -jar $PICARD AddOrReplaceReadGroups \
+$JAVA -Xmx1g -jar $PICARD AddOrReplaceReadGroups \
 	I=${BAM_FILE%%.*}_rdup.bam \
 	O=${BAM_FILE%%.*}_rdup-rg.bam \
 	RGID="NA18507" \
@@ -288,19 +301,19 @@ java -Xmx1g -jar $PICARD AddOrReplaceReadGroups \
 	# 2>AddOrReplaceReadGroups.err
 
  # Build BAM index for fast access
-java -Xmx1g -jar $PICARD BuildBamIndex \
+$JAVA -Xmx1g -jar $PICARD BuildBamIndex \
 	I=${BAM_FILE%%.*}_rdup-rg.bam \
 	2>BuildBamIndex.err
 
 
  # identify regions for indel local realignment of the selected chromosome
-java -Xmx1g -jar $GATK -T RealignerTargetCreator \
+$JAVA -Xmx1g -jar $GATK -T RealignerTargetCreator \
 	-R $REF_FILE \
 	-I ${BAM_FILE%%.*}_rdup-rg.bam \
 	-o target_intervals.list
 
  # perform indel local realignment of the selected chromosome
-java -Xmx1g -jar $GATK -T IndelRealigner \
+$JAVA -Xmx1g -jar $GATK -T IndelRealigner \
 	-R $REF_FILE \
 	-I ${BAM_FILE%%.*}_rdup-rg.bam \
 	-targetIntervals target_intervals.list \
@@ -314,26 +327,23 @@ java -Xmx1g -jar $GATK -T IndelRealigner \
 
  #1. Run UnifiedGenotyper
  # this takes approx. 1.8 min
-java -Xmx1g -jar $GATK -T UnifiedGenotyper \
+$JAVA -Xmx1g -jar $GATK -T UnifiedGenotyper \
 	-R $REF_FILE \
 	-I ${BAM_FILE%%.bam}_realigned.bam \
 	-ploidy 1 \
 	-glm BOTH \
 	-stand_call_conf 30 \
-	-stand_emit_conf 10 \
 	-mbq 10 \
 	-o raw_variants_UG.vcf
  
  #2. Run HaplotypeCaller
-java -Xmx1g -jar $GATK -T HaplotypeCaller \
+$JAVA -Xmx1g -jar $GATK -T HaplotypeCaller \
 	-R $REF_FILE \
 	-I ${BAM_FILE%%.bam}_realigned.bam \
 	--genotyping_mode DISCOVERY \
 	-ploidy 1 \
 	-stand_call_conf 30 \
-	-stand_emit_conf 10 \
 	-o raw_variants_HC.vcf
-	# -L 20
 ```
 
 - Try to understand all the steps.
@@ -392,9 +402,8 @@ Here we check how many databases are available for the Arabidopsis genus.
 
 ```
 java -jar snpEff.jar databases | grep Arabidopsis
-TAIR10.26                                                   	Arabidopsis_thaliana                                        	          	                              	http://downloads.sourceforge.net/project/snpeff/databases/v4_1/snpEff_v4_1_TAIR10.26.zip
-alyrata1                                                    …
-...                                              	Arabidopsis_lyrata                                          	          	                              	http://downloads.sourceforge.net/project/snpeff/databases/v4_1/snpEff_v4_1_v.1.0.26.zip
+Arabidopsis_lyrata Arabidopsis_lyrata ENSEMBL_BFMPP_32_24
+Arabidopsis_thaliana Arabidopsis_thaliana ENSEMBL_BFMPP_32_24
 ```
 
 We see that there are databases available for A. thaliana (both TAIR9 and TAIR10 annotation) and A. lyrata. 
@@ -402,25 +411,19 @@ SnpEff can also help you to build a database from reference genome files (Fasta,
 
 We can download and install a selected database like:
 ```
-java -jar snpEff.jar download -v athalianaTair10
+java -jar snpEff.jar download -v Arabidopsis_thaliana
 ```
 
-### Annotate using SnpEff
+### Annotate using SnpEff (example)
+
+Let's assume you have a VCF file and you want to annotate the variants in that file. An example file is provided in examples/test.chr22.vcf (this data is from the 1000 Genomes project, so the reference genome is the human genome GRCh37).
+You can annotate the file by running the following command (as an input, we use a Variant Call Format (VCF) file available in SnpEff's examples directory).
 
 ```
-java -Xmx4g -jar snpEff.jar -stats summary.html athalianaTair10 test.Ath.vcf > test.Ath.ann.vcf
+java -Xmx4g -jar snpEff.jar -v GRCh37.75 examples/test.chr22.vcf > test.chr22.ann.vcf
 ```
 
-```
-##SnpEffVersion="4.1e (build 2015-05-02), by Pablo Cingolani"
-##SnpEffCmd="SnpEff  athalianaTair10 test.Ath.vcf "
-##INFO=<ID=ANN,Number=.,Type=String,Description="Functional annotations: 'Allele | Annotation | Annotation_Impact | Gene_Name | Gene_ID | Feature_Type | Feature_ID | Transcript_BioType | Rank | HGVS.c | HGVS.p | cDNA.pos / cDNA.length | CDS.pos / CDS.length | AA.pos / AA.length | Distance | ERRORS / WARNINGS / INFO' ">
-##INFO=<ID=LOF,Number=.,Type=String,Description="Predicted loss of function effects for this variant. Format: 'Gene_Name | Gene_ID | Number_of_transcripts_in_gene | Percent_of_transcripts_affected' ">
-##INFO=<ID=NMD,Number=.,Type=String,Description="Predicted nonsense mediated decay effects for this variant. Format: 'Gene_Name | Gene_ID | Number_of_transcripts_in_gene | Percent_of_transcripts_affected' ">
-Chr1	117511	.	C	T	.	.	28,27,14,82,;ANN=T|synonymous_variant|LOW|AT1G01300|AT1G01300|transcript|AT1G01300.1|Coding|1/1|c.447C>T|p.Gly149Gly|569/1822|447/1458|149/485||,T|synonymous_variant|LOW|Exon_1_117065_118522|Gene_AT1G01300.1-Protein|transcript|AT1G01300.1-Protein|Coding|1/1|c.447C>T|p.Gly149Gly|447/1458|447/1458|149/485||,T|upstream_gene_variant|MODIFIER|AT1G01305|AT1G01305|transcript|AT1G01305.1|Coding||c.-33C>T|||||1886|,T|upstream_gene_variant|MODIFIER|Exon_1_119429_119854|Gene_AT1G01305.1-Protein|transcript|AT1G01305.1-Protein|Coding||c.-1C>T|||||1918|,T|upstream_gene_variant|MODIFIER|AT1G01310|AT1G01310|transcript|AT1G01310.1|Coding||c.-68C>T|||||2643|,T|upstream_gene_variant|MODIFIER|Exon_1_120221_120946|Gene_AT1G01310.1-Protein|transcript|AT1G01310.1-Protein|Coding||c.-1C>T|||||2710|,T|downstream_gene_variant|MODIFIER|AT1G01280|AT1G01280|transcript|AT1G01280.1|Coding||c.*1560C>T|||||3564|,T|downstream_gene_variant|MODIFIER|Exon_1_112290_113195|Gene_AT1G01280.1-Protein|transcript|AT1G01280.1-Protein|Coding||c.*1533C>T|||||3606|,T|downstream_gene_variant|MODIFIER|AT1G01290|AT1G01290|transcript|AT1G01290.1|Coding||c.*826C>T|||||1962|,T|downstream_gene_variant|MODIFIER|Exon_1_114299_114433|Gene_AT1G01290.1-Protein|transcript|AT1G01290.1-Protein|Coding||c.*813C>T|||||2215|,T|downstream_gene_variant|MODIFIER|Exon_1_114299_114433|Gene_AT1G01290.2-Protein|transcript|AT1G01290.2-Protein|Coding||c.*813C>T|||||2215|,T|downstream_gene_variant|MODIFIER|AT1G01320|AT1G01320|transcript|AT1G01320.1|Coding||c.*5643G>A|||||3613|,T|downstream_gene_variant|MODIFIER|Exon_1_130039_130099|Gene_AT1G01320.1-Protein|transcript|AT1G01320.1-Protein|Coding||c.*5394G>A|||||4071|,T|downstream_gene_variant|MODIFIER|Exon_1_130039_130099|Gene_AT1G01320.2-Protein|transcript|AT1G01320.2-Protein|Coding||c.*5364G>A|||||4071|,T|downstream_gene_variant|MODIFIER|AT1G01290|AT1G01290|transcript|AT1G01290.2|Coding||c.*826C>T|||||1403|,T|downstream_gene_variant|MODIFIER|AT1G01320|AT1G01320|transcript|AT1G01320.2|Coding||c.*5620G>A|||||3556|
-```
 See the documentation for more options and functions.
-
 
 ### Exercise: VCFtools
 
@@ -430,7 +433,6 @@ VCFtools are specialized tools for working with VCF files: validating, filtering
 
 Often some regions of the genome are low coverage only (or even without any aligned reads) consequently we cannot tell whether polymorphisms exist in these regions. We want to identify such regions and find out whether they overlap with genes.
 The bedtools utilities are convenient for working with genomic coordinates for example bedtools allows one to intersect, merge, count, complement, and shuffle genomic intervals from multiple files in widely-used genomic file formats such as BAM, BED, GFF/GTF, VCF. You will find the documentation under http://bedtools.readthedocs.org/en/latest/index.html
-
 
 Use `MiSeq_Ecoli_DH10B_110721_PF_subsample.bam` from the first exercise.  
 
@@ -458,22 +460,16 @@ A mixed population of E. coli from an evolution experiment was sequenced at seve
 
 ### Data
 
+```
 File Name | Description
-SRR030252.fastq.gz | Illumina reads, 0K generation individual clone from population
 SRR032374.fastq.gz | Illumina reads, 20K generation mixed population
 SRR032376.fastq.gz | Illumina reads, 40K generation mixed population
 NC_012967.1.fasta.gz | E. coli B str. REL606 genome
-
-
-
-The read files were downloaded from the [ENA SRA study](http://www.ebi.ac.uk/ena/data/view/SRP001569).
-So that you can treat all the data as single-ended for simplicity, we concatenated two separate FASTQ (paired-end) files for sample SRR030252 using this command
 ```
-cat SRR030252_1.fastq SRR030252_2.fastq > SRR030252.fastq
-```
-Alternatively, you could map that data set as paired-end.
 
-The reference genome file was downloaded from the [NCBI Genomes page](http://www.ncbi.nlm.nih.gov/genome/167?project_id=58803).
+The read files can be downloaded from the [ENA SRA study](http://www.ebi.ac.uk/ena/data/view/SRP001569).
+
+The reference genome file can be downloaded from the [NCBI Genomes page](http://www.ncbi.nlm.nih.gov/genome/167?project_id=58803).
 We renamed the FASTA sequence from "gi|254160123|ref|NC_012967.1|" to "NC_012967" by changing the first line of the NC_012967.1.fasta sequence using a text editor. It's just easier to deal with the shorter name.
 
 ### Map Reads
