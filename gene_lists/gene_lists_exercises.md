@@ -1,7 +1,7 @@
 # Making sense of gene lists
 
 ### URPP Evolution in Action
-### Stefan Wyder
+### Adapted from Stefan Wyder Bio634 class of 2018
 
 
 We will practise the 3 different ways of making sense of a gene list we have discussed in the presentation.
