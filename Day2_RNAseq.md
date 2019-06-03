@@ -1,14 +1,12 @@
 # BIO634 - Next generation sequencing (NGS) II. Transcriptomes, Variant Calling and Biological Interpretation
 ## June 3-4th 2019 
-## University of Zürich (UZH) 
-
 ![alt text](https://github.com/carlalbc/URPP_tutorials/blob/master/img/Logo_URPP_kl2.png)
+### University of Zürich (UZH) & URPP Evolution in action
+----------
+## Day 2.- RNA-seq and gene expression analyses
+-------------------------------------------------
 
-## URPP Evolution in action
-
-# Day 2.- RNA sequencing: Transcriptomes and differential gene expression analyses
-
-# I. Analyzing RNA-seq data with Salmon
+### I. Analyzing RNA-seq data with Salmon
 
 Today we will use **[Salmon](https://combine-lab.github.io/salmon/)** to align a transcriptome :fish:
 
