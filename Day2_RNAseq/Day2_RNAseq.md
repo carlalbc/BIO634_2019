@@ -287,9 +287,6 @@ legend("topleft", xjust=1, yjust=1, legend=c("FDR<0.05 edgeR only", "FDR<0.05 DE
 -  [Analysis of Genomics Data with R/Bioconductor](https://ivanek.github.io/analysisOfGenomicsDataWithR/06_RNAseqFromFASTQtoCountData_html.html)
 - [ARMOR (Automated Reproducible MOdular RNA-seq) a 2019 Snakemake RNA-seq workflow](https://github.com/csoneson/ARMOR).
 - [RNA-seq workflow - gene-level exploratory analysis and differential expression, 2016](https://www.bioconductor.org/help/course-materials/2016/CSAMA/lab-3-rnaseq/rnaseq_gene_CSAMA2016.html).
-- 
-
-- 
 
 
 
