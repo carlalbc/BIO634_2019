@@ -6,7 +6,13 @@
 
 We will practise the 3 different ways of making sense of a gene list we have discussed in the presentation.
 
+Please clone this repository with:
 
+```
+git clone https://github.com/carlalbc/BIO634_2019
+```
+
+and work in the ***gene_lists*** folder.
 
 ## Exercise 1: Over-Representation / Enrichment Analysis
 
