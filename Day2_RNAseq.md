@@ -8,7 +8,7 @@
 
 # Day 2.- RNA sequencing: Transcriptomes and differential gene expression analyses
 
-# I. Aligning transcriptomes with Salmon
+# I. Analyzing RNA-seq data with Salmon
 
 Today we will use **[Salmon](https://combine-lab.github.io/salmon/)** to align a transcriptome :fish:
 
@@ -54,11 +54,14 @@ Commands:
 
 ## Step 1: Analyzing RNA-seq data with Salmon
 
-In order to quantify transcript-level abundances, Salmon requires a target transcriptome. This transcriptome is given to Salmon in the form of a (possibly compressed) multi-FASTA file, with each entry providing the sequence of a transcript. For this example, we’ll be analyzing some Arabidopsis thaliana data, so we’ll download and index the A. thaliana transcriptome. First, create a directory where we’ll do our analysis, let’s call it `salmon`: 
+In order to quantify transcript-level abundances, Salmon requires a target transcriptome. 
+
+This transcriptome is given to Salmon in the form of a (possibly compressed) multi-FASTA file, with each entry providing the sequence of a transcript. 
+
+For this example, we’ll be analyzing some *Arabidopsis thaliana* data, so we’ll download and index the *A. thaliana* transcriptome. First, create a directory where we’ll do our analysis, let’s call it `salmon`: 
 
 
-
-```
+```sh
 # Make a working directory and go to it
 mkdir salmon
 cd salmon
