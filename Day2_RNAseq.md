@@ -141,11 +141,11 @@ After the salmon commands finish running, you should have a directory named `qua
 
 That’s it! Quantifying your RNA-seq data with salmon is that simple (and fast). Once you have your quantification results you can use them for downstream analysis with differential expression tools like [DESeq2](https://bioconductor.org/packages/DESeq2), [edgeR](https://bioconductor.org/packages/edgeR), [limma](https://bioconductor.org/packages/limma), or [sleuth](http://pachterlab.github.io/sleuth/). Using the [tximport](http://bioconductor.org/packages/tximport) package, you can import salmon’s transcript-level quantifications and optionally aggregate them to the gene level for gene-level differential expression analysis. You can read more about how to import salmon’s results into DESeq2 by reading the tximport section of the excellent [DESeq2 vignette](https://bioconductor.org/packages/DESeq2). For instructions on importing for use with edgeR or limma, see the [tximport vignette](http://bioconductor.org/packages/tximport). For preparing salmon output for use with sleuth, see the [wasabi](https://github.com/COMBINE-lab/wasabi) package.
 
-# II. Exploration of airway library: 
+### II. Exploration of airway library: 
 
 - To start let's install some R packages. In the terminal write the following:
 
-## Step 1: Install R packages 
+#### Step 1: Install R packages 
 
 ```
 sudo R
@@ -158,10 +158,10 @@ Now go to the following [link](https://www.bioconductor.org/help/course-material
 ) to where it says *"Locating BAM files and the sample table"* and start from there.
 
 
-# III. Differential analysis: Comparison between DESEq and edgeR
+### III. Differential analysis: Comparison between DESEq and edgeR
 
 
-## Step 1 and 2: Open **rstudio** by typing ***rstudio*** in the command-line and install the packages like in the previous part.
+#### Step 1 and 2: Open **rstudio** by typing ***rstudio*** in the command-line and install the packages like in the previous part.
 
 - You can always copy&paste, but it is important that you understand what you are doing... go through chunks of the modules instead of everything at once. Each module is separated by a *#* which denotes a "comment" on the script. 
 
@@ -185,7 +185,7 @@ counttable <- read.table(datafile, header=T, row.names=1)
 head(counttable)
 ```
 
-## Make metadata data.frame
+### Make metadata data.frame
 
 ```
 meta <- data.frame(
@@ -279,7 +279,7 @@ legend("topleft", xjust=1, yjust=1, legend=c("FDR<0.05 edgeR only", "FDR<0.05 DE
 - Taken from "A survey of best practices for RNA-seq data analysis" https://doi.org/10.1186/s13059-016-0881-8
 
 
-## Useful workflows for RNA-seq data analyses
+# Useful workflows for RNA-seq data analyses
 
 - [RNA-seq workflow: gene-level exploratory analysis and differential expression, 2018](https://www.bioconductor.org/packages/devel/workflows/vignettes/rnaseqGene/inst/doc/rnaseqGene.html)
 - Importing transcript abundance datasets with [tximport](https://bioconductor.org/packages/release/bioc/vignettes/tximport/inst/doc/tximport.html), 2019.
