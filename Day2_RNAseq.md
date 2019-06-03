@@ -6,6 +6,8 @@
 ## Day 2.- RNA-seq and gene expression analyses
 ### I. Analyzing RNA-seq data with Salmon
 
+*(Tutorial modified from the [Salmon](https://combine-lab.github.io/salmon/) official documentation)*
+
 Today we will use **[Salmon](https://combine-lab.github.io/salmon/)** to align a transcriptome :fish:
 
 [Salmon](https://combine-lab.github.io/salmon/) is a tool for quantifying the expression of transcripts using RNA-seq data. Salmon uses new algorithms (specifically, coupling the concept of *quasi-mapping* with a two-phase inference procedure) to provide accurate expression estimates very quickly (i.e. *wicked-fast*) and while using little memory. In Salmon it's all about quantification! 
