@@ -25,7 +25,7 @@ gregor.rot@uzh.ch
 12.30 - 13.30 | *Lunch at the cafeteria*
 13.30 - 15.45 | **Variant Calling 2** <br /> [Presentation](variant_calling/variant_calling_presentation.pdf)  \| [Hands-on](variant_calling/variant_calling_exercises.md) | GR
 15.45 - 16.00 | *Coffee break*
-16.00 - 17.30 | *Talk:* Dr. Jean-Claude Walser (ETH): RNA-seq in ecology and evolutionary biology 
+16.00 - 17.30 | *Talk:* Dr. Jean-Claude Walser (ETH): RNA-seq in ecology and evolutionary biology [pdf](https://github.com/carlalbc/BIO634_2019/blob/master/UniZH_Bio634_JCW_190603.pdf)
 
 
 
