@@ -155,15 +155,19 @@ To install this package, start R (version "3.6") and enter:
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
-BiocManager::install("tximport")
+BiocManager::install(c("tximport", "tximportData"))
 ```
-- Change `/path/to/dir` to the directory where you have your quantified data (e.g the output from Salmon)
+
+- You can change `system.file`, for the `/path/to/dir` (Here we use `system.file` to locate the package directory, but for a typical use, we would just provide a path, e.g. `/path/to/dir`.)
+
 ```R
 #Load the library
 library(tximportData)
-dir <- /path/to/dir/("extdata", package = "tximportData")
+dir <- system.file("extdata", package = "tximportData")
 list.files(dir)
 ```
+
+
 You can follow the steps in the [workflow](https://bioconductor.org/packages/release/bioc/vignettes/tximport/inst/doc/tximport.html#import-transcript-level-estimates) of **Tximport** with any dataset of your interest.
 
 ### II. Exploration of airway library: 
