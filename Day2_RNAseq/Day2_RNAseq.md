@@ -311,7 +311,7 @@ legend("topleft", xjust=1, yjust=1, legend=c("FDR<0.05 edgeR only", "FDR<0.05 DE
 # Useful workflows for RNA-seq data analyses
 
 - [RNA-seq workflow: gene-level exploratory analysis and differential expression, 2018](https://www.bioconductor.org/packages/devel/workflows/vignettes/rnaseqGene/inst/doc/rnaseqGene.html)
-- [Importing transcript abundance datasets with Tximport](https://bioconductor.org/packages/release/bioc/vignettes/tximport/inst/doc/tximport.html), 2019.
+- [Importing transcript abundance datasets with Tximport, 2019 workflow](https://bioconductor.org/packages/release/bioc/vignettes/tximport/inst/doc/tximport.html).
 
 -  [Analysis of Genomics Data with R/Bioconductor](https://ivanek.github.io/analysisOfGenomicsDataWithR/06_RNAseqFromFASTQtoCountData_html.html)
 - [ARMOR (Automated Reproducible MOdular RNA-seq) a 2019 Snakemake RNA-seq workflow](https://github.com/csoneson/ARMOR).
