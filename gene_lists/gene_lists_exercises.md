@@ -153,3 +153,13 @@ Check the scope of available pathways in KEGG on http://www.genome.jp/kegg/pathw
 - Often you get back a huge list of significantly enriched terms which is difficult to digest. [REViGO](http://revigo.irb.hr/) ([PMID:21789182](http://www.ncbi.nlm.nih.gov/pubmed/21789182)) takes long lists of Gene Ontology terms and summarizes them by removing redundant GO terms. It also makes summary plots.
  
 - Interesting tool seen during the preparation of the course: https://github.com/tanghaibao/goatools
+
+## Updating R in VM
+
+```
+sudo apt install apt-transport-https software-properties-common
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/'
+sudo apt update
+sudo apt install r-base
+```
