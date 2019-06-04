@@ -21,6 +21,8 @@ Installation from source:
 ```sh
 # Make software directory in your home folder
 mkdir ~/software
+#Go to directory
+cd ~/software
 # Get the source file
 wget https://github.com/COMBINE-lab/salmon/releases/download/v0.14.0/salmon-0.14.0_linux_x86_64.tar.gz
 # Uncompress the file
@@ -90,7 +92,7 @@ In addition to the index, salmon obviously requires the RNA-seq reads from the e
 #!/bin/bash
 mkdir data
 cd data
-for i in `seq 25 40`; 
+for i in `seq 25 28`; 
 do 
   mkdir DRR0161${i}; 
   cd DRR0161${i}; 
@@ -114,7 +116,7 @@ Now that we have our index built and all of our data downloaded, we’re ready t
 
 ```sh
 #!/bin/bash
-for fn in data/DRR0161{25..40};
+for fn in data/DRR0161{25..28};
 do
 samp=`basename ${fn}`
 echo "Processing sample ${samp}"
