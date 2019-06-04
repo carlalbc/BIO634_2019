@@ -23,9 +23,7 @@ There are many online tools available for enrichment analysis, but many tools ar
 - uses an up-to-date annotation  
 - does multiple testing correction (e.g. FDR)  
 
-A good choice is e.g. [GOrilla](http://cbl-gorilla.cs.technion.ac.il/) for 6 different species.  
-  
-In R/Bioconductor, we recommend the [topGO](http://www.bioconductor.org/packages/release/bioc/html/topGO.html) package. 
+A good choice is e.g. [GOrilla](http://cbl-gorilla.cs.technion.ac.il/), and for R/Bioconductor, we recommend the [topGO](http://www.bioconductor.org/packages/release/bioc/html/topGO.html) package. 
  
 **Some tips**  
 Generally ignore categories  
