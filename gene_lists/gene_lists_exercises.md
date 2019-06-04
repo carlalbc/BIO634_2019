@@ -67,14 +67,14 @@ The current version v10.5 comprises more than 2'000 species while interaction in
 
 The gene list we use here is a list of significantly up-regulated genes in the *met1* background in *Arabidopsis thaliana*
 defective in methylation maintenance (PMID:18423832).  
-(obtained from Table S2 from the publication [PMID:23146178](http://onlinelibrary.wiley.com/doi/10.1111/tpj.12070/abstract)
+(obtain a list from Table S2 from the publication [PMID:23146178](http://onlinelibrary.wiley.com/doi/10.1111/tpj.12070/abstract)
 The gene list is not significantly enriched in any Gene Ontology terms or in a KEGG pathway.
 
 ------------
 
 1. Open http://string-db.org in your browser
 2. STRING accepts different types of input, often we want to lookup a gene list, but sometimes only a single gene.
-  Here we have a gene list so click on `multiple proteins` and copy&paste the gene list into the search field.
+  Here we have a gene list so click on `search/multiple proteins` and copy & paste the gene list into the search field.
 3. Type Arabidopsis in the `organism` and choose `Arabidopsis thaliana`
   Press the `GO!` button.
 4. Next you see a page with suggested matches. Press `Continue ->` to accept all suggestions.
@@ -83,19 +83,17 @@ known or predicted interactions with different line colors representing the type
 6. Click on a gene to get more information about it (and links out to other databases). 
   Hover and click on some lines and find out where the evidence comes from. Right-Click on <Show> to see the origin.
   Click on some green lines and right-click on <Show> to show the relevant publications co-mentioning the gene pair.  
-7. If you scroll down further you see <Your input> - the input gene(s) with descriptions.
-  Below the network there is a <Settings> tab where you can switch on/off individual prediction methods and change
+7. If you scroll down further you see "Your input", the input gene(s) with descriptions.
+  Below the network there is a "Settings" tab where you can switch on/off individual prediction methods and change
 the required minimum confidence score.
   Change the confidence, press <Update> and check the effect on the resulting networks.
-8. Below the network is a taskbar with icons `+` and `-` Here you can grow the network by 10 more partners. By pressing the `+ (more)` button 10 genes not present in your list are added to the network so that
-your input genes are maximally connected. These newly added genes (in white color) are candidates for working in the same process/pathway
-as your input genes (Find more information about them in the <Predicted Functional Partners:> window at the bottom of the page) 
-  Press the `+ (more)` button multiple times and see how the network grows (the same functionality you can get from the <Settings> tab: `max number of interactors to show`).  
-9. In the tab <Analysis>, you can see enrichment analysis with Gene Ontology and KEGG pathways.   
-10. In the tab <Clusters>, you can apply different cluster algorithms on your network.    
+8. Below the network is a taskbar with icons "+" and "-" Here you can grow the network by 10 more partners. By pressing the "+ (more)" button 10 genes not present in your list are added to the network so that your input genes are maximally connected. These newly added genes (in white color) are candidates for working in the same process/pathway as your input genes (Find more information about them in the <Predicted Functional Partners:> window at the bottom of the page) 
+Press the "+ (more)" button multiple times and see how the network grows (the same functionality you can get from the "Settings" tab: "max number of interactors to show").
+9. In the tab "Analysis", you can see enrichment analysis with Gene Ontology and KEGG pathways.   
+10. In the tab "Clusters", you can apply different cluster algorithms on your network.    
 
-  Make an Enrichment analysis with <GO Biological Processes> and <KEGG pathways>
-  Remove genes not connected to any other genes by going to <Settings> | <hide disconnected nodes in the network>
+Make an Enrichment analysis with "GO Biological Processes" and "KEGG pathways"
+Remove genes not connected to any other genes by going to "Settings", "hide disconnected nodes in the network".
 
 ## Gene Set Enrichment Analysis (GSEA)
 
