@@ -143,18 +143,45 @@ After the salmon commands finish running, you should have a directory named `qua
 
 That’s it! Quantifying your RNA-seq data with salmon is that simple (and fast). Once you have your quantification results you can use them for downstream analysis with differential expression tools like [DESeq2](https://bioconductor.org/packages/DESeq2), [edgeR](https://bioconductor.org/packages/edgeR), [limma](https://bioconductor.org/packages/limma), or [sleuth](http://pachterlab.github.io/sleuth/). Using the [tximport](http://bioconductor.org/packages/tximport) package, you can import salmon’s transcript-level quantifications and optionally aggregate them to the gene level for gene-level differential expression analysis. You can read more about how to import salmon’s results into DESeq2 by reading the tximport section of the excellent [DESeq2 vignette](https://bioconductor.org/packages/DESeq2). For instructions on importing for use with edgeR or limma, see the [tximport vignette](http://bioconductor.org/packages/tximport). For preparing salmon output for use with sleuth, see the [wasabi](https://github.com/COMBINE-lab/wasabi) package.
 
+### Importing transcript abundance datasets with tximport 
+
+#### Bioconductor - tximport
+
+- Yu can use [Tximport](https://bioconductor.org/packages/release/bioc/vignettes/tximport/inst/doc/tximport.html#import-transcript-level-estimates) to import the quantification files obtained
+
+To install this package, start R (version "3.6") and enter:
+
+```R
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("tximport")
+```
+- Change `/path/to/dir` to the directory where you have your quantified data (e.g the output from Salmon)
+```R
+#Load the library
+library(tximportData)
+dir <- /path/to/dir/("extdata", package = "tximportData")
+list.files(dir)
+```
+You can follow the steps in the [workflow](https://bioconductor.org/packages/release/bioc/vignettes/tximport/inst/doc/tximport.html#import-transcript-level-estimates) of **Tximport** with any dataset of your interest.
+
 ### II. Exploration of airway library: 
 
 - To start let's install some R packages. In the terminal write the following:
 
 #### Step 1: Install R packages 
 
-```
-sudo R
+```R
+#Install using sudo in the command line
+sudo R    # use the password for the VM account 
+# Type the following on the R command line
 source("https://bioconductor.org/biocLite.R")
 biocLite(c("VennDiagram", "DESeq","edgeR", "Matrix", "airway", "Rsamtools", "pasilla", "GenomicFeatures", "GenomicAlignments","BiocParallel", "Rsubread"))
 ```
-## Step 2: Open **rstudio** by typing ***rstudio*** in the command-line
+#### Step 2: Open **rstudio** 
+
+Type `rstudio`in the command-line, it should open Rstudio.
 
 Now go to the following [link](https://www.bioconductor.org/help/course-materials/2016/CSAMA/lab-3-rnaseq/rnaseq_gene_CSAMA2016.html
 ) to where it says *"Locating BAM files and the sample table"* and start from there.
