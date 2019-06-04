@@ -25,7 +25,7 @@ There are many online tools available for enrichment analysis, but many tools ar
 
 A good choice is e.g. [GOrilla](http://cbl-gorilla.cs.technion.ac.il/) for 6 different species.  
   
-In R/Bioconductor, I like the [topGO](http://www.bioconductor.org/packages/release/bioc/html/topGO.html) package. 
+In R/Bioconductor, we recommend the [topGO](http://www.bioconductor.org/packages/release/bioc/html/topGO.html) package. 
  
 **Some tips**  
 Generally ignore categories  
@@ -39,9 +39,9 @@ removing redundant GO terms. It also makes summary plots.
 
 ### Exercise
 
-Try out GOrilla with the list of genes overexpressed in Adult mice relative to Newborns.  
+Try out GOrilla with the list of genes overexpressed in Adult mice relative to Newborns, stored in the diffExp_N-A.txt file.  
   
-First we have to prepare the input files (1 gene name per line). We take the 734 genes overexpressed in Adult relative to Newborn mice
+First, we need to prepare the input files (1 gene name per line). We take the 734 genes overexpressed in Adult relative to Newborn mice
 (from the RNA-seq tutorial) with a FDR < 5%. 
 ```
 awk '$5<1 && $8<=0.05 {print $1}' diffExp_N-A.txt  | sed 's/"//g' > diffExp_N_smallerThan_A.FDR5perc.txt
