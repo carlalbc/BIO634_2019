@@ -32,7 +32,7 @@ gregor.rot@uzh.ch
 ### Day 2
 &nbsp; | &nbsp; | &nbsp;
 -------- | --- | --- 
-9.30 - 10.45 | **RNA-seq** <br /> [Presentation](https://github.com/carlalbc/BIO634_2019/blob/master/Day2_RNAseq/Day2_RNAseq%20.pdf) \| [Hands-on](https://github.com/carlalbc/BIO634_2019/blob/master/Day2_RNAseq/Day2_RNAseq.md) | CB
+9.30 - 10.45 | **RNA-seq** <br /> [Presentation](https://github.com/carlalbc/BIO634_2019/blob/master/Day2_RNAseq/Day2_RNAseq%20.pdf) \| [Hands-on](https://github.com/carlalbc/BIO634_2019/blob/master/Day2_RNAseq/Day2_RNAseq.md) | CB 
 10.45 - 11:00 | *Coffee break*
 11.00 - 12.00 |  **Continuation: RNA-seq**  | CB
 12.00 - 13.00 | *Lunch at the cafeteria* 
