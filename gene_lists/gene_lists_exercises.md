@@ -54,66 +54,6 @@ Look at the table output below the figure. Click at some significantly enriched 
   
 Try out GOrilla with the list of differentially expressed genes from the RNA-seq session.
 
-
-## Gene Set Enrichment Analysis (GSEA)
-
-Gene Set Enrichment Analysis (GSEA) is a more sensitive and robust alternative to Over-Representation Analysis. It does not require a (somewhat
-arbitrary) significance cut-off but it uses the ranked list of all genes.
-We want to find out using GSEA which pathways are enriched in the Newborn - Adult comparison from the previous exercise. 
-Here we will be using the original GSEA software that has a nice Graphical User Interface providing its output as simple webpages. 
-However, many derivatives of the GSEA approach are now available in Bioconductor with more precise statistics (check http://www.bioconductor.org/packages/release/BiocViews.html#___Pathways).
-
-### Exercise 
-
-First we need to provide a **list of ranked genes**. Here we take the probabilities for differential expression between the 2 groups, 
-Newborn vs Adults, and we separate the 2 possible directions by multiplying FDR with -1 for genes which are underexpressed in 
-Newborns relative to Adults (we can take either p-value or FDR which give the same result).
-```
-awk '$5<1 {factor=-1} NR>1 {print $1"\t"$8*factor;factor=1}' diffExp_N-A.txt | sed 's/"//g' > diffExp_N-A.4GSEA.rnk 
-```
-We also have to provide *gene sets*. The GSEA gene set files are available for human only therefore I have prepared a file 
-c2.cp.v2.5.symbols_MmProjection_ensembl.gmt which projects the human pathway annotation to mouse genes via orthology.
-
-Now we are ready to run GSEA. Launch GSEA in the virtual machine:
-```
-java -Xmx1000m -jar /software/GSEA/gsea2-2.0.14.jar
-```
-
-Next we load the data. 
-- Click on the on the left <Load data> and <Browse for files...> then select the 2 required files.
-- From the menu select <Tools | GseaPreranked>.
-- Fill out the required fields: For Gene Sets Database click on <...> and press the right arrow until you reach <Gene matrix local gmx/gmt>
-then click on the file and press <OK> 
-- Set <Collapse dataset to gene symbols> to <false> 
-- Under <Basic Fields> and <Advanced Fields> one can change the analysis parameters. We don't change anything.
-- At the bottom of the window change to <Normal> CPU Usage.
-- Run the analysis by pressing the <Run> button at the lower bottom of the window
-- Once finished, click on the green <Success> in the lower left corner of GSEA. A webpage will then open in your browser.  
-
-
-Go to <Detailed enrichment results in html format> and on the following page go to the <Details> for some pathways. 
-Try to understand the different columns.  
-Documentation of the GSEA method (User guide, tutorials, file formats etc) is available [here](http://www.broadinstitute.org/cancer/software/gsea/wiki/index.php/Main_Page)  
-  
-Alternatively, you can access the GSEA output from the web browser (the folder containing the date might be called differently - use the <Tab> autocompletion!)
-```
-firefox /home/student/gsea_home/output/may18/my_analysis.GseaPreranked.1401102143051/index.html
-```
-
-**Interpretation**  
-- You can look up the pathway description on [MSigDB](http://www.broadinstitute.org/gsea/msigdb/index.jsp) (Registration required).  
-- Explore the most significant pathways.  
-- Are they all plausible?  
-- Pathway analysis is easier to interpret and often gives better biological insight than Gene Ontology (but a larger fraction of genes is annotated with Gene Ontology terms than with patways.
-
-
-**Non-model organisms**  
-The GSEA websites provides only annotation files for human, but you can prepare gene set (.gmt) files for any species from Gene Ontology,or Pathway annotation. Check the [GSEA documentation (http://www.broadinstitute.org/cancer/software/gsea/wiki/index.php/Main_Page) how to format gene set (.gmt) files.
-
-Check the scope of available pathways in KEGG on http://www.genome.jp/kegg/pathway.html
-
-
-
 ### Network analysis with STRING
 
 As an example for network analysis we try out STRING.  
@@ -157,7 +97,60 @@ as your input genes (Find more information about them in the <Predicted Function
   Make an Enrichment analysis with <GO Biological Processes> and <KEGG pathways>
   Remove genes not connected to any other genes by going to <Settings> | <hide disconnected nodes in the network>
 
+## Gene Set Enrichment Analysis (GSEA)
 
+Gene Set Enrichment Analysis (GSEA) is a more sensitive and robust alternative to Over-Representation Analysis. It does not require a (somewhat
+arbitrary) significance cut-off but it uses the ranked list of all genes.
+We want to find out using GSEA which pathways are enriched in the Newborn - Adult comparison from the previous exercise. 
+Here we will be using the original GSEA software that has a nice Graphical User Interface providing its output as simple webpages. 
+However, many derivatives of the GSEA approach are now available in Bioconductor with more precise statistics (check http://www.bioconductor.org/packages/release/BiocViews.html#___Pathways).
+
+### Exercise 
+
+First we need to provide a **list of ranked genes**. Here we take the probabilities for differential expression between the 2 groups, 
+Newborn vs Adults, and we separate the 2 possible directions by multiplying FDR with -1 for genes which are underexpressed in 
+Newborns relative to Adults (we can take either p-value or FDR which give the same result).
+```
+awk '$5<1 {factor=-1} NR>1 {print $1"\t"$8*factor;factor=1}' diffExp_N-A.txt | sed 's/"//g' > diffExp_N-A.4GSEA.rnk 
+```
+We also have to provide *gene sets*. The GSEA gene set files are available for human only therefore we use the file 
+Mus_musculus_GSEA_GO_sets_all_ids_highquality_April_2015.gmt.
+
+Now we are ready to run GSEA. Download GSEA and the mouse gene sets in the virtual machine:
+```
+wget http://bioinfo.evolution.uzh.ch/share/bio634/gsea-3.0.jar
+wget http://bioinfo.evolution.uzh.ch/share/bio634/Mus_musculus_GSEA_GO_sets_all_ids_highquality_April_2015.gmt
+java -Xmx1000m -jar gsea2-2.0.14.jar # launch GSEA
+```
+
+Next we load the data. 
+- Click on the on the left <Load data> and <Browse for files...> then select the 2 required files.
+- From the menu select <Tools | GseaPreranked>.
+- Fill out the required fields: For Gene Sets Database click on "..." and press the right arrow until you reach "Gene matrix local gmx/gmt" then click on the file and press "OK"
+- Set "Collapse dataset to gene symbols" to "false"
+- Under "Basic Fields" and "Advanced Fields" one can change the analysis parameters. We don't change anything.
+- At the bottom of the window change to "Normal" CPU Usage.
+- Run the analysis by pressing the "Run" button at the lower bottom of the window
+- Once finished, click on the green "Success" in the lower left corner of GSEA. A webpage will then open in your browser.  
+
+Go to "Detailed enrichment results in html format" and on the following page. Try to understand the different columns. Documentation of the GSEA method (User guide, tutorials, file formats etc) is available at http://www.broadinstitute.org/cancer/software/gsea/wiki/index.php/Main_Page
+  
+Alternatively, you can access the GSEA output from the web browser (the folder containing the date might be called differently; use the "Tab" autocompletion):
+```
+firefox /home/student/gsea_home/output/may18/my_analysis.GseaPreranked.1401102143051/index.html
+```
+
+**Interpretation**  
+- You can look up the pathway description on [MSigDB](http://www.broadinstitute.org/gsea/msigdb/index.jsp) (Registration required).  
+- Explore the most significant pathways.  
+- Are they all plausible?  
+- Pathway analysis is easier to interpret and often gives better biological insight than Gene Ontology (but a larger fraction of genes is annotated with Gene Ontology terms than with patways.
+
+
+**Non-model organisms**  
+The GSEA websites provides only annotation files for human, but you can prepare gene set (.gmt) files for any species from Gene Ontology,or Pathway annotation. Check the [GSEA documentation (http://www.broadinstitute.org/cancer/software/gsea/wiki/index.php/Main_Page) how to format gene set (.gmt) files.
+
+Check the scope of available pathways in KEGG on http://www.genome.jp/kegg/pathway.html
 
 ## Tips
 
